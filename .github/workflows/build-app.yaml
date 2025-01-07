@@ -1,11 +1,11 @@
 name: Build App
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
-      - release
+  #pull_request:
+  #push:
+  #  branches:
+  #    - main
+  #    - release
   workflow_dispatch:
 
 env:
@@ -25,7 +25,10 @@ jobs:
           fetch-depth: 0
 
       - name: build
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
         run: |
+          export PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
           git config --system --add safe.directory '*'
           java -version
           ./gradlew --no-daemon buildNative lint assembleDebug
