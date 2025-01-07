@@ -1,6 +1,3 @@
 [submodule "syncthing"]
 	path = syncthing/src/github.com/avkiller/syncthing
 	url = https://github.com/avkiller/syncthing.git
-[submodule "syncthing/src/github.com/avkiller/syncthing"]
-	path = syncthing/src/github.com/avkiller/syncthing
-	url = https://github.com/avkiller/syncthing.git
