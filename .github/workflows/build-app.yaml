@@ -31,19 +31,11 @@ jobs:
         run: |
           sudo apt-get update
         #sudo apt-get install -y python3 openjdk-17-jdk-headless
-      - name: Make Gradle executable
-        run: chmod +x ./gradlew
-
-      - name: change dir
-        run: |
-           cd /home/runner/work/syncthing-android/syncthing-android
-           echo pwd
-      - name: build
-        #env:
-        #  JAVA_HOME: /usr/lib/jvm/java-17-ope
-        run: |
-          ./gradlew buildNative
-          ./gradlew lint assembleDebug
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - uses: actions/upload-artifact@v3
         with:
