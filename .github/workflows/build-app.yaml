@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - release
+  workflow_dispatch:
 
 env:
   # Our build metadata
