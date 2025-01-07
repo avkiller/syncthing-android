@@ -27,17 +27,11 @@ jobs:
         with:
           ndk-version: ${{ env.NDK_VERSION }}
           add-to-path: true
-
-      - name: pretools
-        run: | 
-          apt-get -y install git openjdk-17-jdk python
-
       - name: build
-        #env:
-        #  JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
         run: |
           export PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
-          git config --system --add safe.directory '*'
           java -version
           ./gradlew buildNative
           ./gradlew lint assembleDebug
