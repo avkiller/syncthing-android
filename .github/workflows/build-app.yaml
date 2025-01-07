@@ -25,9 +25,10 @@ jobs:
           fetch-depth: 0
 
       - name: build
-        env:
-          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+        #env:
+        #  JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
         run: |
+          apt-get -y install git openjdk-17-jdk python
           export PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
           git config --system --add safe.directory '*'
           java -version
