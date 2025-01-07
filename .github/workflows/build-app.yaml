@@ -15,7 +15,7 @@ env:
 jobs:
   build:
     name: Debug Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,12 +30,11 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git openjdk-17-jdk python openjdk-17-jdk-headless
+        #sudo apt-get install -y python3 openjdk-17-jdk-headless
       - name: build
-        env:
-          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-        run: |
-          export PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
+        #env:
+        #  JAVA_HOME: /usr/lib/jvm/java-17-ope
+        run: 
           java -version
           ./gradlew buildNative
           ./gradlew lint assembleDebug
