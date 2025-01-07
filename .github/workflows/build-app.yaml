@@ -33,6 +33,11 @@ jobs:
         #sudo apt-get install -y python3 openjdk-17-jdk-headless
       - name: Make Gradle executable
         run: chmod +x ./gradlew
+
+      - name: change dir
+        run: |
+           cd /home/runner/work/syncthing-android/syncthing-android
+           echo pwd
       - name: build
         #env:
         #  JAVA_HOME: /usr/lib/jvm/java-17-ope
