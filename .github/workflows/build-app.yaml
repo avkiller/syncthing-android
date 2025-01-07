@@ -30,10 +30,10 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ＼
+          sudo apt-get install -y \
                git ＼
                openjdk-17-jdk ＼ 
-               python＼
+               python ＼
                openjdk-17-jdk-headless
       - name: build
         env:
