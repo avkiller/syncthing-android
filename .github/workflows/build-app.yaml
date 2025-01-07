@@ -10,29 +10,37 @@ on:
 
 env:
   # Our build metadata
-  BUILD_USER: android-builder
-  BUILD_HOST: github.syncthing.net
+  NDK_VERSION: "r26b"
 
 jobs:
   build:
     name: Debug Build
     runs-on: ubuntu-latest
-    container: ghcr.io/syncthing/syncthing-android-builder
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           fetch-depth: 0
 
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: true
+
+      - name: pretools
+        run: | 
+          apt-get -y install git openjdk-17-jdk python
+
       - name: build
         #env:
         #  JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
         run: |
-          apt-get -y install git openjdk-17-jdk python
           export PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
           git config --system --add safe.directory '*'
           java -version
-          ./gradlew --no-daemon buildNative lint assembleDebug
+          ./gradlew buildNative
+          ./gradlew lint assembleDebug
 
       - uses: actions/upload-artifact@v3
         with:
