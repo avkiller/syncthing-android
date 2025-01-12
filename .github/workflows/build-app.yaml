@@ -49,7 +49,7 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew --no-daemon buildNative
-          ./gradlew lint assembleRelease --stacktrace --info --scan
+          ./gradlew lint assembleRelease --debug --info --scan
 
       - name: Setup sign tool version variable
         shell: bash
