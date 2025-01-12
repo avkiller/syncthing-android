@@ -11,11 +11,14 @@ on:
 env:
   # Our build metadata
   NDK_VERSION: "r26b"
+  ANDROID_SIGNING_KEY: "${{ secrets.ANDROID_SIGNING_KEY }}"
 
 jobs:
   build:
     name: Debug Build
     runs-on: ubuntu-24.04
+    environment: 
+      name: AndroidSign
     steps:
       - uses: actions/checkout@v3
         with:
@@ -37,16 +40,53 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew buildNative
-          ./gradlew lint assembleDebug
+          ./gradlew lint assembleRelease
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: syncthing-android-debug.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Setup sign tool version variable
+        shell: bash
+        run: |
+          BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+          echo "ANDROID_SIGN_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+          echo Last build tool version is: $BUILD_TOOL_VERSION
 
-      - uses: actions/upload-artifact@v3
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign app APK
+        if: env.ANDROID_SIGNING_KEY != null
+        id: sign-syncthing
         with:
-          name: reports-and-libs
-          path: |
-            app/build/reports/**
-            app/src/main/jniLibs/**
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+          alias: ${{ secrets.ANDROID_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        env:
+          # env.ANDROID_SIGN_TOOL_VERSION is set by Step "Setup sign tool version variable"
+          BUILD_TOOLS_VERSION: ${{ env.ANDROID_SIGN_TOOL_VERSION }}
+          
+      - name: Upload Artifacts
+        if: env.ANDROID_SIGNING_KEY != null
+        uses: actions/upload-artifact@master
+        with:
+          name: syncthing-android.apk
+          path: ${{steps.sign-syncthing.outputs.signedReleaseFile}}
+
+      - name: Publish signed apk package
+        if: env.ANDROID_SIGNING_KEY != null
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: true
+          tag_name: ${{ env.TAG_NAME }}
+          files: |
+            ${{steps.sign-syncthing.outputs.signedReleaseFile}}
+
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: syncthing-android-debug.apk
+      #     path: app/build/outputs/apk/debug/app-debug.apk
+
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: reports-and-libs
+      #     path: |
+      #       app/build/reports/**
+      #       app/src/main/jniLibs/**
