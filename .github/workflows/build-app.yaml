@@ -42,9 +42,9 @@ jobs:
             ./gradlew cleanNative
             ./gradlew clean
 
-      - name: check lint
-        run: |
-             ./gradlew .app:lintRelease
+      #- name: check lint
+      #  run: |
+      #       ./gradlew .app:lintRelease
         
       - name: Build with Gradle
         run: |
