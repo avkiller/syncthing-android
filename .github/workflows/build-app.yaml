@@ -11,7 +11,7 @@ on:
 env:
   # Our build metadata
   NDK_VERSION: "r26b"
-  ANDROID_SIGNING_KEY: "${{ secrets.ANDROID_SIGNING_KEY }}"
+  TAG_NAME: "nightly"
 
 jobs:
   build:
