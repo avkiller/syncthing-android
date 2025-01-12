@@ -37,6 +37,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         
+      - name: clean cache
+        run: |
+            ./gradlew cleanNative
+            ./gradlew clean
+        
       - name: Build with Gradle
         run: |
           ./gradlew buildNative
