@@ -112,6 +112,8 @@ android {
     }
     lint {
         abortOnError = true
+        absolutePaths = false
+
         disable += "ExpiringTargetSdkVersion"
         disable += "ExpiredTargetSdkVersion"
     }
