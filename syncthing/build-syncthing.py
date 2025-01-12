@@ -41,18 +41,6 @@ BUILD_TARGETS = [
         'goarch': 'arm64',
         'jni_dir': 'arm64-v8a',
         'cc': 'aarch64-linux-android{}-clang',
-    },
-    {
-        'arch': 'x86',
-        'goarch': '386',
-        'jni_dir': 'x86',
-        'cc': 'i686-linux-android{}-clang',
-    },
-    {
-        'arch': 'x86_64',
-        'goarch': 'amd64',
-        'jni_dir': 'x86_64',
-        'cc': 'x86_64-linux-android{}-clang',
     }
 ]
 
