@@ -312,7 +312,7 @@ if platform.system() not in PLATFORM_DIRS:
 
 module_dir = os.path.dirname(os.path.realpath(__file__))
 project_dir = os.path.realpath(os.path.join(module_dir, '..'))
-syncthing_dir = os.path.join(module_dir, 'src', 'github.com', 'syncthing', 'syncthing')
+syncthing_dir = os.path.join(module_dir, 'src', 'github.com', 'avkiller', 'syncthing')
 prerequisite_tools_dir = os.path.dirname(os.path.realpath(__file__)) + os.path.sep + ".." + os.path.sep + ".." + os.path.sep + "syncthing-android-prereq"
 min_sdk = get_min_sdk(project_dir)
 
