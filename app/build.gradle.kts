@@ -4,12 +4,6 @@ plugins {
     id("com.github.triplet.play") version "3.7.0"
 }
 
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
 dependencies {
     androidTestImplementation("androidx.annotation:annotation:1.2.0")
     androidTestImplementation("androidx.test:rules:1.6.1")
@@ -63,23 +57,33 @@ android {
         targetSdk = 35
         versionCode = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionWrapper
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}.${versionWrapper}"
-        testApplicationId = "com.fireworld.syncthingandroid.test"
+        testApplicationId = "com.fireworld.syncthingandroi.test"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
-      release {
-        keyAlias keystoreProperties['keyAlias']
-        keyPassword keystoreProperties['keyPassword']
-        storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-        storePassword keystoreProperties['storePassword']
-      }
+        create("release") {
+            storeFile = System.getenv("SYNCTHING_RELEASE_STORE_FILE")?.let(::file)
+            storePassword = System.getenv("SIGNING_PASSWORD")
+            keyAlias = System.getenv("SYNCTHING_RELEASE_KEY_ALIAS")
+            keyPassword = System.getenv("SIGNING_PASSWORD")
+        }
     }
 
     buildTypes {
-        release {
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules'
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+            isJniDebuggable = true
+            isMinifyEnabled = false
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.runCatching { getByName("release") }
+                .getOrNull()
+                .takeIf { it?.storeFile != null }
+        }
+        create("gplay") {
+            initWith(getByName("release"))
         }
     }
 
