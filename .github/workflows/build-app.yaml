@@ -10,7 +10,7 @@ on:
 
 env:
   # Our build metadata
-  NDK_VERSION: "r26b"
+  NDK_VERSION: "r27c"
   TAG_NAME: "nightly"
 
 jobs:
@@ -44,8 +44,8 @@ jobs:
         
       - name: Build with Gradle
         run: |
-          ./gradlew buildNative
-          ./gradlew lint assembleDebug --stacktrace --info --scan
+          ./gradlew --no-daemon buildNative
+          ./gradlew lint assembleRelease --stacktrace --info --scan
 
       - name: Setup sign tool version variable
         shell: bash
@@ -56,7 +56,6 @@ jobs:
 
       - uses: r0adkll/sign-android-release@v1
         name: Sign app APK
-        if: env.ANDROID_SIGNING_KEY != null
         id: sign-syncthing
         with:
           releaseDirectory: app/build/outputs/apk/release
@@ -69,14 +68,12 @@ jobs:
           BUILD_TOOLS_VERSION: ${{ env.ANDROID_SIGN_TOOL_VERSION }}
           
       - name: Upload Artifacts
-        if: env.ANDROID_SIGNING_KEY != null
         uses: actions/upload-artifact@master
         with:
           name: syncthing-android.apk
           path: ${{steps.sign-syncthing.outputs.signedReleaseFile}}
 
       - name: Publish signed apk package
-        if: env.ANDROID_SIGNING_KEY != null
         uses: softprops/action-gh-release@v1
         with:
           prerelease: true
