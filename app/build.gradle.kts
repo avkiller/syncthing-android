@@ -52,38 +52,28 @@ android {
     buildFeatures.dataBinding = true
 
     defaultConfig {
-        applicationId = "com.github.catfriend1.syncthingandroid"
+        applicationId = "com.fireworld.syncthingandroid"
         minSdk = 21
         targetSdk = 35
         versionCode = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionWrapper
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}.${versionWrapper}"
-        testApplicationId = "com.github.catfriend1.syncthingandroid.test"
+        testApplicationId = "com.fireworld.syncthingandroid.test"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
-        create("release") {
-            storeFile = System.getenv("SYNCTHING_RELEASE_STORE_FILE")?.let(::file)
-            storePassword = System.getenv("SIGNING_PASSWORD")
-            keyAlias = System.getenv("SYNCTHING_RELEASE_KEY_ALIAS")
-            keyPassword = System.getenv("SIGNING_PASSWORD")
-        }
+      release {
+        keyAlias keystoreProperties['keyAlias']
+        keyPassword keystoreProperties['keyPassword']
+        storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+        storePassword keystoreProperties['storePassword']
+      }
     }
 
     buildTypes {
-        getByName("debug") {
-            applicationIdSuffix = ".debug"
-            isDebuggable = true
-            isJniDebuggable = true
-            isMinifyEnabled = false
-        }
-        getByName("release") {
-            signingConfig = signingConfigs.runCatching { getByName("release") }
-                .getOrNull()
-                .takeIf { it?.storeFile != null }
-        }
-        create("gplay") {
-            initWith(getByName("release"))
+        release {
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules'
         }
     }
 
