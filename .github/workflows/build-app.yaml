@@ -12,6 +12,7 @@ env:
   # Our build metadata
   NDK_VERSION: "r27c"
   TAG_NAME: "nightly"
+  VERSION: "1.29.2"
 
 jobs:
   build:
@@ -50,6 +51,7 @@ jobs:
         run: |
           ./gradlew --no-daemon buildNative
           ./gradlew lint assembleRelease --debug --info --scan
+          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/syncthing-${{ env.VERSION }}.apk
 
       - name: Setup sign tool version variable
         shell: bash
