@@ -49,7 +49,7 @@ jobs:
         
       - name: Build with Gradle
         run: |
-          ./gradlew --no-daemon buildNative
+          ./gradlew buildNative
           ./gradlew lint assembleRelease --debug --info --scan
           mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/syncthing-${{ env.VERSION }}.apk
 
