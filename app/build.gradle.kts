@@ -81,13 +81,9 @@ android {
             signingConfig = signingConfigs.runCatching { getByName("release") }
                 .getOrNull()
                 .takeIf { it?.storeFile != null }
-            isShrinkResources = true
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.txt"
-            )
-        }
+            #isShrinkResources = true
+            #isMinifyEnabled = true
+            #proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"),"proguard-rules.txt")}
         create("gplay") {
             initWith(getByName("release"))
         }
