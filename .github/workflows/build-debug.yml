@@ -34,6 +34,8 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
+          sudo apt-get install -y binutils-arm-linux-gnueabi binutils-aarch64-linux-gnu
+
         #sudo apt-get install -y python3 openjdk-17-jdk-headless
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
