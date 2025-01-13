@@ -18,6 +18,8 @@ jobs:
 
       - name: Update Submodules
         run: |
+          git config --global user.email "avkiller2012@gmail.com"
+          git config --global user.name "avkiller"
           git submodule update --remote --merge
           git add .
           git commit -m "Update submodules"
