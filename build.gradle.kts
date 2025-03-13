@@ -7,7 +7,7 @@ buildscript {
         set("ndkVersionShared", "27.2.12479018")
         set("versionMajor", 1)
         set("versionMinor", 29)
-        set("versionPatch", 2)
+        set("versionPatch", 3)
         set("versionWrapper", 0)
     }
 
