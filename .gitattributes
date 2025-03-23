@@ -1,3 +1,4 @@
 *.cmd text eol=crlf
 *.bat text eol=crlf
 syncthing/src/github.com/** merge=ignore
+README.md merge=ignore
