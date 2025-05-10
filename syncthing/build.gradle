@@ -16,7 +16,7 @@ def getSyncthingNativeVersion() {
 }
 
 def getSourceDateEpoch() {
-    def syncthingSubmoduleDir = new File(project.rootDir, "syncthing/src/github.com/syncthing/syncthing")
+    def syncthingSubmoduleDir = new File(project.rootDir, "syncthing/src/github.com/avkiller/syncthing")
     def sourceDateEpoch = "git log -1 --format=%ct".execute([], syncthingSubmoduleDir).text.trim()
     return sourceDateEpoch
 }
