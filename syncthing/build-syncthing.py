@@ -29,6 +29,7 @@ NDK_VERSION = 'r28'
 NDK_EXPECTED_SHASUM_LINUX = '894f469c5192a116d21f412de27966140a530ebc'
 NDK_EXPECTED_SHASUM_WINDOWS = 'f79a00c721dc5c15b2bf093d7bb2af96496a42b2'
 
+# The values here must correspond with those in ../docker/prebuild.sh
 BUILD_TARGETS = [
     {
         'arch': 'arm',
@@ -94,57 +95,6 @@ def change_permissions_recursive(path, mode):
             os.chmod(dir, mode)
         for file in [os.path.join(root, f) for f in files]:
             os.chmod(file, mode)
-
-def install_git():
-    import os
-    import zipfile
-    import hashlib
-
-    if sys.version_info[0] >= 3:
-        from urllib.request import urlretrieve
-    else:
-        from urllib import urlretrieve
-
-    if not os.path.isdir(prerequisite_tools_dir):
-        os.makedirs(prerequisite_tools_dir)
-
-    if sys.platform == 'win32':
-        url =               'https://github.com/git-for-windows/git/releases/download/v2.19.0.windows.1/MinGit-2.19.0-64-bit.zip'
-        expected_shasum =   '424d24b5fc185a9c5488d7872262464f2facab4f1d4693ea8008196f14a3c19b'
-        zip_fullfn = prerequisite_tools_dir + os.path.sep + 'mingit.zip';
-    else:
-        print('Portable on-demand git installation is currently not supported on linux.')
-        return None
-
-    # Download MinGit.
-    url_base_name = os.path.basename(url)
-    if not os.path.isfile(zip_fullfn):
-        print('Downloading MinGit to:', zip_fullfn)
-        zip_fullfn = urlretrieve(url, zip_fullfn)[0]
-    print('Downloaded MinGit to:', zip_fullfn)
-
-    # Verify SHA-256 checksum of downloaded files.
-    with open(zip_fullfn, 'rb') as f:
-        contents = f.read()
-        found_shasum = hashlib.sha256(contents).hexdigest()
-        print("SHA-256:", zip_fullfn, "%s" % found_shasum)
-    if found_shasum != expected_shasum:
-        fail('Error: SHA-256 checksum ' + found_shasum + ' of downloaded file does not match expected checksum ' + expected_shasum)
-    print("[ok] Checksum of", zip_fullfn, "matches expected value.")
-
-    # Proceed with extraction of the MinGit.
-    if not os.path.isfile(prerequisite_tools_dir + os.path.sep + 'mingit' + os.path.sep + 'LICENSE.txt'):
-        print("Extracting MinGit ...")
-        # This will go to a subfolder "mingit" in the current path.
-        zip = zipfile.ZipFile(zip_fullfn, 'r')
-        zip.extractall(prerequisite_tools_dir + os.path.sep + 'mingit')
-        zip.close()
-
-    # Add "mingit/cmd" to the PATH.
-    git_bin_path = prerequisite_tools_dir + os.path.sep + 'mingit' + os.path.sep + 'cmd'
-    print('Adding to PATH:', git_bin_path)
-    os.environ["PATH"] += os.pathsep + git_bin_path
-
 
 def install_go():
     import os
@@ -214,11 +164,18 @@ def write_file(fullfn, text):
 def get_ndk_ready():
     if os.environ.get('ANDROID_NDK_HOME', ''):
         return
-    if not (os.environ.get('NDK_VERSION', '') and os.environ.get('ANDROID_SDK_ROOT', '')):
-        print('ANDROID_NDK_HOME env var is not defined. Then, NDK_VERSION and ANDROID_SDK_ROOT env vars must be defined.')
+    ndk_env_vars_defined = True
+    if not os.environ.get('NDK_VERSION', ''):
+        print('NDK_VERSION is NOT defined.')
+        ndk_env_vars_defined = False
+    if not os.environ.get('ANDROID_HOME', ''):
+        print('ANDROID_HOME is NOT defined.')
+        ndk_env_vars_defined = False
+    if not ndk_env_vars_defined:
+        print('ANDROID_NDK_HOME or NDK_VERSION and ANDROID_HOME environment variable must be defined.')
         install_ndk()
         return
-    os.environ["ANDROID_NDK_HOME"] = os.path.join(os.environ['ANDROID_SDK_ROOT'], 'ndk', os.environ['NDK_VERSION'])
+    os.environ["ANDROID_NDK_HOME"] = os.path.join(os.environ['ANDROID_HOME'], 'ndk', os.environ['NDK_VERSION'])
     return
 
 
@@ -298,12 +255,8 @@ min_sdk = get_min_sdk(project_dir)
 # Check if git is available.
 git_bin = which("git");
 if not git_bin:
-    print('Warning: git is not available on the PATH.')
-    install_git();
-    # Retry: Check if git is available.
-    git_bin = which("git");
-    if not git_bin:
-        fail('Error: git is not available on the PATH.')
+    fail('Error: git is not available on the PATH.')
+
 print('git_bin=\'' + git_bin + '\'')
 
 # Check if go is available.
@@ -346,10 +299,12 @@ else:
     ]).strip();
     syncthingVersion = syncthingVersion.decode().replace("rc", "preview");
 
-print('Cleaning go-build cache')
-subprocess.check_call([go_bin, 'clean', '-cache'], cwd=syncthing_dir)
+if os.environ.get('CLEANUP_BEFORE_BUILD', '') == "1":
+    print('Cleaning go-build cache')
+    subprocess.check_call([go_bin, 'clean', '-cache'], cwd=syncthing_dir)
 
 print('Building syncthing version', syncthingVersion);
+print('SOURCE_DATE_EPOCH=[' + os.environ['SOURCE_DATE_EPOCH'] + ']');
 for target in BUILD_TARGETS:
     print('')
     print('*** Building for', target['arch'])
