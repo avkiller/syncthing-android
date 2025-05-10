@@ -1,0 +1,128 @@
+name: Build fireworld App
+
+on:
+  #pull_request:
+  #push:
+  #  branches:
+  #    - main
+  #    - release
+  workflow_dispatch:
+
+env:
+  # Our build metadata
+  NDK_VERSION: "r28"
+  TAG_NAME: "nightly"
+  VERSION: "1.29.6"
+
+jobs:
+  build:
+    name: Syncthing Build
+    runs-on: ubuntu-24.04
+    environment: 
+      name: AndroidSign
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: true
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y binutils-arm-linux-gnueabi binutils-aarch64-linux-gnu
+        #sudo apt-get install -y python3 openjdk-17-jdk-headless
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        
+      - name: clean cache
+        run: |
+            ./gradlew cleanNative
+            ./gradlew clean
+
+      #- name: check lint
+      #  run: |
+      #       ./gradlew .app:lintRelease
+      - name: Get tag version
+        run: |
+          # 如果是手动触发 (workflow_dispatch)
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            # 获取所有 Tag（确保包含远程 Tag）
+            git fetch --tags
+            # 按版本号排序获取最新 Tag（兼容语义化版本）
+            LATEST_TAG=$(git tag --sort=-v:refname | head -n 1 || echo "nightly")
+
+            # 去掉 Tag 名称中的 'v' 前缀
+            VERSION="${LATEST_TAG}"
+          else
+           # 原有逻辑：从推送的 Tag 中提取版本号
+           TAG_VERSION="${GITHUB_REF##*/}"
+           VERSION="${TAG_VERSION}"
+          fi
+
+          # 处理无 Tag 的情况（可选：报错或默认值）
+          if [ -z "$VERSION" ]; then
+            echo "::error::No valid tag found!"
+            VERSION="0.0.0"
+          fi
+
+          # 将信息写入环境变量
+          echo "TAG_NAME=$LATEST_TAG" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      
+        
+      - name: Build with Gradle
+        run: |
+          ./gradlew buildNative
+          ./gradlew lint assembleRelease --debug --info --scan
+          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/syncthing-${{ env.VERSION }}.apk
+
+      - name: Setup sign tool version variable
+        shell: bash
+        run: |
+          BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+          echo "ANDROID_SIGN_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+          echo Last build tool version is: $BUILD_TOOL_VERSION
+
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign app APK
+        id: sign-syncthing
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+          alias: ${{ secrets.ANDROID_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        env:
+          # env.ANDROID_SIGN_TOOL_VERSION is set by Step "Setup sign tool version variable"
+          BUILD_TOOLS_VERSION: ${{ env.ANDROID_SIGN_TOOL_VERSION }}
+          
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: syncthing-android.apk
+          path: ${{steps.sign-syncthing.outputs.signedReleaseFile}}
+
+      - name: Publish signed apk package
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: true
+          tag_name: ${{ env.TAG_NAME }}
+          files: |
+            ${{steps.sign-syncthing.outputs.signedReleaseFile}}
+
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: syncthing-android-debug.apk
+      #     path: app/build/outputs/apk/debug/app-debug.apk
+
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: reports-and-libs
+      #     path: |
+      #       app/build/reports/**
+      #       app/src/main/jniLibs/**
