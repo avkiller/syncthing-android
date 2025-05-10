@@ -4,7 +4,7 @@ plugins {
 
 def getSyncthingNativeVersion() {
     def syncthingSubmoduleDir = new File(project.rootDir, "syncthing/src/github.com/syncthing/syncthing")
-    def gitDescribe = "git describe --always".execute([], syncthingSubmoduleDir).text.trim()
+    def gitDescribe = "git describe --tags".execute([], syncthingSubmoduleDir).text.trim()
 
     // Take "(versionMajor).(versionMinor).(versionPatch)" without leading "v" and ignore what follows after.
      def matcher = gitDescribe =~ /v?(\d+)\.(\d+)\.(\d+)(?:-.+)?/
