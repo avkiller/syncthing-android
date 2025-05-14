@@ -1,5 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+plugins {
+    alias(libs.plugins.aboutLibraries) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+}
+
 buildscript {
     extra.apply {
         // Cannot be called "ndkVersion" as that leads to naming collision
@@ -8,7 +15,7 @@ buildscript {
         set("versionMajor", 1)
         set("versionMinor", 29)
         set("versionPatch", 6)
-        set("versionWrapper", 1)
+        set("versionWrapper", 2)
     }
 
     repositories {
@@ -18,9 +25,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.6.1")
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.52.0")
-        classpath("com.google.android.gms:oss-licenses-plugin:0.10.5")
+        classpath("com.android.tools.build:gradle:8.8.2")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
