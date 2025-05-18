@@ -432,7 +432,7 @@
     <!-- Toast after entering invalid http proxy address -->
     <string name="toast_invalid_http_proxy_address">La entrada infringe la sintaxis de proxy \'http://[IP/HOSTNAME]:[PORT]\'</string>
     <string name="broadcast_service_control_title">Control de Servicios mediante Transmisión</string>
-    <string name="broadcast_service_control_summary">Por defecto: Desactivado. Habilite esta opción para iniciar y detener el servicio mediante el envío de transmisiones, por ejemplo, desde aplicaciones de automatización de terceros. Nota: Tiene que reiniciar la aplicación manualmente después de cambiar esta opción.</string>
+    <string name="broadcast_service_control_summary">Por defecto: Desactivado. Habilite esta opción para permitir a adb o a otras aplicaciones, por ej. aplicaciones de automatización comandar a Syncthing para seguir condiciones, forzar su arranque o su parada.</string>
     <!-- Dialog shown before config export -->
     <string name="dialog_confirm_export">¿Realmente quieres exportar tu configuración\? Se sobreescribirán los ficheros existentes.
 \n
@@ -591,7 +591,6 @@
     <string name="reason_not_nonmetered_wifi">Syncthing no se está ejecutando porque usted le ha prohibido ejecutarse en conexiones Wifi de uso medido.</string>
     <string name="reason_location_unavailable">Ha activado \"Ejecutar en redes Wifi seleccionadas\" en los ajustes. Los servicios de localización de Android están actualmente desactivados. Según las restricciones de Android, Syncthing no puede determinar el nombre de la red Wifi actual para decidir si debe ejecutarse. Solución: Active la ubicación, conceda el permiso de ubicación y vuelva a conectar el Wifi.</string>
     <string name="reason_on_flight_mode">Syncthing se está ejecutando porque le ha permitido hacerlo cuando el modo avión está activado.</string>
-    <string name="reason_broadcast_controlled">Syncthing está escuchando las transmisiones enviadas por una aplicación de terceros o ADB. Puede volver a utilizar las condiciones de ejecución integradas desactivando \"Ajustes\" &gt; \"Experimental\" &gt; \"Control de Servicios mediante Transmisión\".</string>
     <string name="reason_run_condition_monitor_not_instantiated">RunConditionMonitor no está instanciado. Por favor, reinicie la aplicación y presente un informe de error si este error no desaparece después del reinicio.</string>
     <!-- Sync Conditions Dialog -->
     <string name="custom_wifi_ssid_whitelist_empty">Ningún SSID de WiFi en la lista blanca. Por favor, especifique algunos en la configuración.</string>
@@ -674,7 +673,6 @@
     <string name="state_unshared">No compartido</string>
     <!-- Format string for folder size, eg "500 MiB / 1 GiB" -->
     <string name="folder_size_format">%1$s / %2$s</string>
-    <string name="appconfig_receiver_background_enabled">No está soportado detener Syncthing mientras está activada la ejecución en segundo plano.</string>
     <!-- Titles used in the folder type dialog and folder type button in the folder activity -->
     <string name="folder_type">Tipo de Carpeta</string>
     <!-- Displays the current folder type in the folder activity -->
@@ -763,4 +761,22 @@
     <string name="sleep_interval_minutes_title">Duración del intervalo de pausa de sincronización</string>
     <string name="start_into_web_gui_title">Iniciar directamente en la interfaz web</string>
     <string name="start_into_web_gui_summary">Cuando se inicia la apliación, cargar la interfaz web en lugar de la pantalla principal</string>
+    <string name="open_source_licenses_title">Licencias de Código Abierto</string>
+    <string name="syncthing_forum_title">Foro de Syncthing</string>
+    <string name="folder_run_script_caption">Ejecutar \"script\"</string>
+    <string name="clear_stversions_title">Vaciar todas las carpetas de versiones</string>
+    <string name="privacy_title">Política de privacidad</string>
+    <string name="open_source_licenses_summary">Mostrar las licencias de código abierto empleadas</string>
+    <string name="clear_stversions_question">Esto borrará todas las versiones anteriores de los ficheros manejados con Syncthing. ¿Deseas continuar?</string>
+    <string name="clear_stversions_done">Carpeta .stversions limpiada con éxito.</string>
+    <plurals name="conflicts">
+        <item quantity="one">%1$d conflicto</item>
+        <item quantity="many">%1$d conflictos</item>
+        <item quantity="other">%1$d conflictos</item>
+    </plurals>
+    <string name="syncthing_forum_summary">Entra en el foro de Syncthing y consigue ayuda</string>
+    <string name="clear_stversions_summary">Los ficheros se mueven al directorio .stversions cuando son reemplazados o eliminados por Syncthing. Probablemente puedes encontrar ahí y recuperar archivos que hayan sido accidentalmente eliminados, pero las versiones anteriores de los ficheros ocupan espacio en tu dispositivo.</string>
+    <string name="privacy_summary">Abre la política de privacidad de syncthing-android, que cubre el uso (si acaso) de datos personales, por ej. localización.</string>
+    <string name="pizza_url_title">» A los gatos les encanta la pizza « 😺🍕</string>
+    <string name="folder_run_script_description">"Opción avanzada para ejecutar \"scripts\" tras detectar cambios  en su estado de sincronismo. Los \"scripts\" en \'.stfolder/*.sh\' serán procesados, no se soportan otras ubicaciones por razones de seguridad.\nUn ejemplo de \"script\": \'.stfolder/rename-files.sh sync_complete\'"</string>
 </resources>

@@ -431,7 +431,7 @@
     <!-- Toast after entering invalid http proxy address -->
     <string name="toast_invalid_http_proxy_address">Die Eingabe entspricht nicht der Form „http://[IP/HOSTNAME]:[PORT]“</string>
     <string name="broadcast_service_control_title">Dienstkontrolle über Broadcast</string>
-    <string name="broadcast_service_control_summary">Standard: Deaktiviert. Diese Option aktivieren, um den Dienst durch Broadcasts z. B. mit Drittanbieter Automatisierungsapps zu starten und zu stoppen. Hinweis: Nach dem Ändern dieser Option muss die App manuell neu gestartet werden.</string>
+    <string name="broadcast_service_control_summary">Standard: Deaktiviert. Diese Option aktivieren, damit adb oder Anwendungen von Drittanbietern, z. B. Automatisierungsanwendungen, Syncthing anweisen können, den Ausführungsbedingungen zu folgen und den Start oder Stopp zu erzwingen.</string>
     <!-- Dialog shown before config export -->
     <string name="dialog_confirm_export">Soll die Konfiguration wirklich exportiert werden\? Vorhandene Dateien werden überschrieben.
 \n
@@ -586,7 +586,6 @@
     <string name="reason_not_nonmetered_wifi">Syncthing läuft nicht, weil verboten wurde, dass es bei getakteten WLAN-Verbindungen läuft.</string>
     <string name="reason_location_unavailable">In den Einstellungen ist „In ausgewählten WLAN-Netzwerken starten“ aktiviert. Die Android-Standorterfassung ist derzeit ausgeschaltet. Aufgrund von Android-Beschränkungen kann Syncthing den aktuellen WLAN-Netzwerknamen nicht ermitteln, um zu entscheiden, ob es starten soll. Lösung: Den Standort einschalten, Standortberechtigung erteilen und WLAN erneut verbinden.</string>
     <string name="reason_on_flight_mode">Syncthing läuft, weil erlaubt wurde, dass es bei eingeschaltetem Flugzeugmodus läuft.</string>
-    <string name="reason_broadcast_controlled">Syncthing hört auf Broadcasts, die von einer Drittanbieter-App oder über ADB gesendet werden. Du kannst zu den eingebauten Laufkonditionen zurück wechseln, indem Du unter \'Einstellungen\' &gt; \'Experimentell\' &gt; \'Dienstkontrolle über Broadcast\' deaktivierst.</string>
     <string name="reason_run_condition_monitor_not_instantiated">Laufkonditionen-Überwachung ist nicht instantiiert. Bitte die App neu starten und einen Fehlerbericht erstellen, falls das Problem nach dem Neustart nicht verschwindet.</string>
     <!-- Sync Conditions Dialog -->
     <string name="custom_wifi_ssid_whitelist_empty">Es sind keine WLAN-Netzwerknamen auf der Erlaubt-Liste. Bitte welche in den Einstellungen festlegen.</string>
@@ -667,7 +666,6 @@
     <string name="state_unshared">Ungeteilt</string>
     <!-- Format string for folder size, eg "500 MiB / 1 GiB" -->
     <string name="folder_size_format">%1$s / %2$s</string>
-    <string name="appconfig_receiver_background_enabled">Syncthing zu stoppen wird nicht unterstützt, solange das Ausführen im Hintergrund aktiviert ist.</string>
     <!-- Titles used in the folder type dialog and folder type button in the folder activity -->
     <string name="folder_type">Ordnertyp</string>
     <!-- Displays the current folder type in the folder activity -->
@@ -760,7 +758,7 @@
     <string name="open_source_licenses_summary">Verwendete Open-Source-Lizenzen anzeigen</string>
     <string name="syncthing_forum_title">Syncthing Forum</string>
     <string name="privacy_title">Datenschutzerklärung</string>
-    <string name="syncthing_forum_summary">Das Syncthing Forum besuchen und Unterstützung ethalten</string>
+    <string name="syncthing_forum_summary">Das Syncthing-Forum besuchen und Unterstützung erhalten</string>
     <string name="privacy_summary">Die Datenschutzerklärung von syncthing-android öffnen, welche die Verwendung personenbezogener Daten (falls vorhanden), z. B. des Standorts, abdeckt.</string>
     <string name="clear_stversions_question">Damit werden alle früheren Versionen der von Syncthing verwalteten Dateien gelöscht. Fortfahren?</string>
     <string name="clear_stversions_done">Erfolgreich .stversions-Ordner geleert.</string>
@@ -768,6 +766,10 @@
     <string name="clear_stversions_summary">Dateien werden in das Verzeichnis .stversions verschoben, wenn sie von Syncthing ersetzt oder gelöscht werden. Versehentlich gelöschte Dateien lassen sich wahrscheinlich dort finden und wiederherstellen, allerdings belegen veraltete Versionen der Dateien Speicherplatz auf diesem Gerät.</string>
     <string name="folder_run_script_caption">Skript ausführen</string>
     <string name="folder_run_script_description">Expertenoption zur Ausführung von Skripten, nachdem ein Ordner seinen Synchronisierungsstatus geändert hat. Skripte unter „.stfolder/*.sh“ werden ausgeführt, andere Speicherorte werden aus Sicherheitsgründen nicht unterstützt.\nBeispiel für einen Skriptaufruf: „.stfolder/rename-files.sh sync_complete“</string>
-    <string name="pizza_url_summary">Mit nur einem Fingertipp können Sie ein warmes Stück Liebenswürdigkeit hinterlassen - gekrönt von besonders guter Atmospähre, damit die Katzen weiterhin fröhlich schnurren.</string>
+    <string name="pizza_url_summary">Mit nur einem Fingertipp können Sie ein warmes Stück Liebenswürdigkeit hinterlassen – gekrönt von besonders guter Atmosphäre, damit die Katzen weiterhin fröhlich schnurren.</string>
     <string name="pizza_url_title">» Katzen lieben Pizza « 😺🍕</string>
+    <plurals name="conflicts">
+        <item quantity="one">%1$d Konflikt</item>
+        <item quantity="other">%1$d Konflikte</item>
+    </plurals>
 </resources>
