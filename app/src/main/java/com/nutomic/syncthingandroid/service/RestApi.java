@@ -1228,20 +1228,6 @@ public class RestApi {
             }
 
             if (finalPlanOnFolderSyncCompleted) {
-            final Map.Entry<FolderStatus, CachedFolderStatus> cacheEntry = mLocalCompletion.getFolderStatus(folderId);
-            final FolderStatus folderStatus =  cacheEntry.getKey();
-            if (!folderStatus.state.contains("sync")) {
-                // Check for ".sync-conflict-YYYYMMDD-HHMMSS-DEVICEI*" files.
-                mLocalCompletion.setDiscoveredConflictFiles(
-                        folderId,
-                        Util.getSyncConflictFiles(folder.path)
-                );
-            }
-
-            final CachedFolderStatus cachedFolderStatus = cacheEntry.getValue();
-            if (!folderStatus.state.contains("sync") && 
-                    cachedFolderStatus.remoteIndexUpdated) {
-                mLocalCompletion.setRemoteIndexUpdated(folderId, false);
                 onFolderSyncCompleted(
                         folder, 
                         folderStatus.state, 
