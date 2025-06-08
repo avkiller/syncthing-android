@@ -43,7 +43,7 @@ public class Constants {
     public static final String PREF_RUN_IN_FLIGHT_MODE          = "run_in_flight_mode";
     public static final String PREF_RUN_ON_TIME_SCHEDULE        = "run_on_time_schedule";
     public static final String PREF_SYNC_DURATION_MINUTES       = "sync_duration_minutes";
-    public static final String PREF_SLEEP_INTERVAL_MINUTES       = "sleep_interval_minutes";
+    public static final String PREF_SLEEP_INTERVAL_MINUTES      = "sleep_interval_minutes";
 
     // Preferences - User Interface
     public static final String PREF_APP_THEME                   = "app_theme";
@@ -58,11 +58,11 @@ public class Constants {
     public static final String PREF_WEBUI_PASSWORD              = "webui_password";
 
     // Preferences - Import and Export
-    public static final String PREF_BACKUP_FOLDER_NAME          = "backup_folder_name";
+    public static final String PREF_BACKUP_REL_PATH_TO_ZIP      = "backup_rel_path_to_zip";
+    public static final String PREF_BACKUP_PASSWORD             = "backup_password";
 
     // Preferences - Troubleshooting
     public static final String PREF_VERBOSE_LOG                 = "verbose_log";
-    public static final String PREF_LOG_TO_FILE                 = "log_to_file";
     public static final String PREF_ENVIRONMENT_VARIABLES       = "environment_variables";
     public static final String PREF_DEBUG_FACILITIES_ENABLED    = "debug_facilities_enabled";
 
@@ -207,7 +207,7 @@ public class Constants {
     /**
      * File in the config folder we write to temporarily before renaming to CONFIG_FILE.
      */
-    static final String CONFIG_TEMP_FILE = "config.xml.tmp";
+    private static final String CONFIG_TEMP_FILE = "config.xml.tmp";
 
     public static File getConfigTempFile(Context context) {
         return new File(context.getFilesDir(), CONFIG_TEMP_FILE);
@@ -234,7 +234,11 @@ public class Constants {
     /**
      * Name of the folder containing the index database.
      */
-    public static final String INDEX_DB_FOLDER = "index-v0.14.0.db";
+    private static final String INDEX_DB_FOLDER = "index-v0.14.0.db";
+
+    public static File getIndexDbFolder(Context context) {
+        return new File(context.getFilesDir(), INDEX_DB_FOLDER);
+    }
 
     /**
      * Name of the public HTTPS CA file in the data directory.
@@ -255,15 +259,33 @@ public class Constants {
     }
 
     /**
-     * Name of the export file holding the SharedPreferences backup.
+     * Name of the file holding the SharedPreferences backup.
+     * Do not use getCacheDir() because the path to import will then be wrong as
+     * zipFile.extractAll will write to getFilesDir().
      */
-    static final String SHARED_PREFS_EXPORT_FILE = "sharedpreferences.dat";
+    public static final String SHARED_PREFS_FILE = "sharedpreferences.dat";
 
-    static File getSyncthingBinary(Context context) {
+    public static File getSharedPrefsFile(Context context) {
+        return new File(context.getFilesDir(), SHARED_PREFS_FILE);
+    }
+
+    /**
+     * Get libsyncthingnative.so absolute path and filename.
+     */
+    public static File getSyncthingBinary(Context context) {
         return new File(context.getApplicationInfo().nativeLibraryDir, FILENAME_SYNCTHING_BINARY);
     }
 
-    static File getLogFile(Context context) {
+    /**
+     * Log file storage locations.
+     */
+    public static File getAndroidLogFile(Context context) {
+        // e.g. /data/data/com.github.catfriend1.syncthingandroid.debug/cache/android.log
+        return new File(context.getCacheDir(), "android.log");
+    }
+
+    public static File getSyncthingLogFile(Context context) {
+        // e.g. /data/data/com.github.catfriend1.syncthingandroid.debug/files/syncthing.log
         return new File(context.getFilesDir(), "syncthing.log");
     }
 
