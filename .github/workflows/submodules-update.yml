@@ -1,11 +1,11 @@
 name: Update Submodules
 
 on:
-  #push:
-  #  branches:
-  #    - main
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '0 0 * * *'  # 每天UTC时间0:00执行
+    - cron: '4 0 * * *'  # 每天UTC时间0:00执行
   workflow_dispatch:
 
 jobs:
