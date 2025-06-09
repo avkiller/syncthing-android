@@ -18,7 +18,7 @@ PLATFORM_DIRS = {
 }
 
 # Leave empty to auto-detect version by 'git describe'.
-FORCE_DISPLAY_SYNCTHING_VERSION = 'v1.29.6'
+FORCE_DISPLAY_SYNCTHING_VERSION = ''
 FILENAME_SYNCTHING_BINARY = 'libsyncthingnative.so'
 
 GO_VERSION = '1.24.1'
