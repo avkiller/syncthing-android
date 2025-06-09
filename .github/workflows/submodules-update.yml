@@ -4,8 +4,8 @@ on:
   #push:
   #  branches:
   #    - main
-  #schedule:
-  #  - cron: '0 0 * * *'  # 每天UTC时间0:00执行
+  schedule:
+    - cron: '0 0 * * *'  # 每天UTC时间0:00执行
   workflow_dispatch:
 
 jobs:
@@ -26,8 +26,8 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          echo "::set-output name=changes::$(git status --porcelain)"
-          
+          # echo "::set-output name=changes::$(git status --porcelain)"
+          echo "changes=$(git status --porcelain)" >> $GITHUB_OUTPUT
       - name: Commit and push changes
         if: steps.check_changes.outputs.changes != ''
         run: |
