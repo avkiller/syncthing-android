@@ -39,7 +39,7 @@ REM
 IF "%SKIP_CHECKOUT_SRC%" == "1" goto :afterCheckoutSrc
 REM
 echo [INFO] Fetching submodule "Syncthing" 1/2 ...
-md "%SCRIPT_PATH%syncthing\src\github.com\syncthing\syncthing" 2> NUL:
+md "%SCRIPT_PATH%syncthing\src\github.com\avkiller\syncthing" 2> NUL:
 git submodule init
 SET RESULT=%ERRORLEVEL%
 IF NOT "%RESULT%" == "0" echo [ERROR] git submodule init FAILED. & goto :eos
@@ -49,7 +49,7 @@ git submodule update --init --recursive --quiet
 SET RESULT=%ERRORLEVEL%
 IF NOT "%RESULT%" == "0" echo [ERROR] git submodule update FAILED. & goto :eos
 REM
-cd /d "%SCRIPT_PATH%syncthing\src\github.com\syncthing\syncthing"
+cd /d "%SCRIPT_PATH%syncthing\src\github.com\avkiller\syncthing"
 echo [INFO] Fetching GitHub tags ...
 git fetch --quiet --all
 SET RESULT=%ERRORLEVEL%
@@ -72,7 +72,7 @@ SET RESULT=%ERRORLEVEL%
 IF NOT "%RESULT%" == "0" echo [ERROR] gradlew buildNative FAILED. & goto :eos
 REM
 echo [INFO] Reverting "go.mod", "go.sum" to checkout state ...
-cd /d "%SCRIPT_PATH%syncthing\src\github.com\syncthing\syncthing"
+cd /d "%SCRIPT_PATH%syncthing\src\github.com\avkiller\syncthing"
 git checkout -- go.mod
 git checkout -- go.sum
 cd /d "%SCRIPT_PATH%"
