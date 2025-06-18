@@ -36,14 +36,6 @@ jobs:
           VERSION="$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH.$VERSION_WRAPPER"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Get commit hash
-        id: get_commit_hash
-        run: |
-          set -eu
-          git config --system --add safe.directory '*'
-          COMMIT_HASH=$(git rev-parse --short --verify HEAD)
-          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
-
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
@@ -89,8 +81,8 @@ jobs:
         
       - name: Build with Gradle
         run: |
-          set -eu
-          git config --system --add safe.directory '*'
+          # set -eu
+          # git config --system --add safe.directory '*'
           java -version
           ./gradlew buildNative
           ./gradlew lint assembleRelease --debug --info --scan
