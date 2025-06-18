@@ -176,7 +176,7 @@ public class ConfigXml {
             if (elementOptions != null) {
                 changed = setConfigElement(elementOptions, "listenAddress", new String[]{
                                 "tcp://:22001",
-                                "dynamic+https://relays.syncthing.net/endpoint"
+                                "dynamic+relay://relay.fuxudong.com:997/?id=GWP6DT7-EJ35GFC-XQSH33J-HO3BFDM-HWGVW3B-AODJLEW-BQNO3T5-RID3AAK"
                         }
                 ) || changed;
             }
