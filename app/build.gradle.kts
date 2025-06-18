@@ -58,7 +58,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.fireworld.syncthingandroid"
+        applicationId = "com.fireworld.syncthing"
         minSdk = 21
         targetSdk = 35
         versionCode = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionWrapper
