@@ -63,7 +63,7 @@ android {
         targetSdk = 35
         versionCode = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionWrapper
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}.${versionWrapper}"
-        testApplicationId = "com.fireworld.syncthingandroi.test"
+        testApplicationId = "com.fireworld.syncthing.test"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

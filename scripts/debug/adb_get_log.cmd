@@ -1,8 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 ::
-SET "PACKAGE_ID_DEBUG=com.github.catfriend1.syncthingandroid.debug"
-SET "PACKAGE_ID_RELEASE=com.github.catfriend1.syncthingandroid"
+SET "PACKAGE_ID_DEBUG=com.fireworld.syncthing.debug"
+SET "PACKAGE_ID_RELEASE=com.fireworld.syncthing"
 ::
 where adb >NUL: 2>&1 || (echo [ERROR] adb is missing. Please install it first. Stop. & goto :eof)
 ::

@@ -88,8 +88,8 @@ public class BootReceiver extends BroadcastReceiver {
      * Prerequisistes:
      * - android.permission.WRITE_SETTINGS
      * - android.permission.WRITE_SECURE_SETTINGS
-     *      adb shell pm grant com.github.catfriend1.syncthingandroid android.permission.WRITE_SECURE_SETTINGS
-     *      adb shell pm grant com.github.catfriend1.syncthingandroid.debug android.permission.WRITE_SECURE_SETTINGS
+     *      adb shell pm grant com.fireworld.syncthing android.permission.WRITE_SECURE_SETTINGS
+     *      adb shell pm grant com.fireworld.syncthing.debug android.permission.WRITE_SECURE_SETTINGS
      */
     private static void disableDuraSpeed(Context context) {
         Log.d(TAG, "Disabling DuraSpeed");

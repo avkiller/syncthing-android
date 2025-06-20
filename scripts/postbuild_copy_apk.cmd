@@ -4,7 +4,7 @@ REM Purpose:
 REM 	Copy built APK's to match this style:
 REM 		[APPLICATION_ID]_v[VERSION_NAME]_[COMMIT_SHORT_HASH].apk
 REM 	Example:
-REM 		com.github.catfriend1.syncthingandroid_v1.0.0.1_7d59e75.apk
+REM 		com.fireworld.syncthing_v1.0.0.1_7d59e75.apk
 REM 
 title %~nx0
 setlocal enabledelayedexpansion
@@ -118,7 +118,7 @@ REM 	[IN] TEMP_OUTPUT_FOLDER
 REM 	[IN] VERSION_NAME
 REM 
 REM Variables.
-SET TMP_DSC_ZIPFILE_FULLFN="%TEMP_OUTPUT_FOLDER%\%DATE:~-4%-%DATE:~-7,-5%-%DATE:~-10,-8%_com.github.catfriend1.syncthingandroid_v%VERSION_NAME%_%COMMIT_SHORT_HASH%.zip"
+SET TMP_DSC_ZIPFILE_FULLFN="%TEMP_OUTPUT_FOLDER%\%DATE:~-4%-%DATE:~-7,-5%-%DATE:~-10,-8%_com.fireworld.syncthing_v%VERSION_NAME%_%COMMIT_SHORT_HASH%.zip"
 SET TMP_DSC_SEVENZIP_EXE="%ProgramFiles%\7-Zip\7z.exe"
 REM 
 REM Check prerequisites.
