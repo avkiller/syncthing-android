@@ -12,7 +12,7 @@ env:
   # Our build metadata
   NDK_VERSION: "r28"
   TAG_NAME: "nightly"
-  VERSION: "1.29.6"
+  # VERSION: "1.29.6"
 
 jobs:
   build:
