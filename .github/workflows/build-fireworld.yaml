@@ -86,7 +86,7 @@ jobs:
           java -version
           ./gradlew buildNative
           ./gradlew lint assembleRelease
-	  # ./gradlew lint assembleRelease --debug --info --scan
+	      # ./gradlew lint assembleRelease --debug --info --scan
           mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/syncthing-${{ env.VERSION }}.apk
 
       - name: Setup sign tool version variable
