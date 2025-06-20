@@ -26,7 +26,7 @@ def verifySyncthingNativeVersionMatchesApp() {
     def syncthingAppVersion = "${rootProject.ext.get("versionMajor")}.${rootProject.ext.get("versionMinor")}.${rootProject.ext.get("versionPatch")}"
     if (syncthingNativeVersion != syncthingAppVersion) {
         // throw new GradleException("Checked out SyncthingNative version (${syncthingNativeVersion}) differs from App version (${syncthingAppVersion}). Please verify that the submodule refers to the correct commit.")
-        logger.warn("WARNING: Checked out SyncthingNative version (${syncthingNativeVersion}) differs from App version (${syncthingAppVersion}). Please verify that the submodule refers to the correct commit.")
+        logger.warn("WARNING: Checked out SyncthingNative version: (${syncthingNativeVersion}) differs from App version: (${syncthingAppVersion}). Please verify that the submodule refers to the correct commit.")
     }
 }
 
