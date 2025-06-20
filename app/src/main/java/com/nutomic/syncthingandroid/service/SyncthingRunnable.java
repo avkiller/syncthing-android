@@ -197,7 +197,7 @@ public class SyncthingRunnable implements Runnable {
                 lInfo = log(process.getInputStream(), Log.INFO);
                 lWarn = log(process.getErrorStream(), Log.WARN);
             }
-            Log.i(TAG, "Fireworld debug niceSyncthing start?");
+
             niceSyncthing();
 
             exitCode = process.waitFor();

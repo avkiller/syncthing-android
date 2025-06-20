@@ -67,7 +67,7 @@ public class ConfigXml {
 
     private static final String TAG = "ConfigXml";
 
-    private Boolean ENABLE_VERBOSE_LOG = true;
+    private Boolean ENABLE_VERBOSE_LOG = false;
 
     public class OpenConfigException extends RuntimeException {
     }
@@ -176,7 +176,8 @@ public class ConfigXml {
             if (elementOptions != null) {
                 changed = setConfigElement(elementOptions, "listenAddress", new String[]{
                                 "tcp://:22001",
-                                "dynamic+relay://relay.fuxudong.com:997/?id=GWP6DT7-EJ35GFC-XQSH33J-HO3BFDM-HWGVW3B-AODJLEW-BQNO3T5-RID3AAK"
+                                "relay://relay.fuxudong.com:997/?id=GWP6DT7-EJ35GFC-XQSH33J-HO3BFDM-HWGVW3B-AODJLEW-BQNO3T5-RID3AAK", 
+								"relay://relay.fuxudong.cn:996/?id=RAXLOLJ-6KGZMPC-SPYOUAC-VK4P76M-MTELJZJ-IUUGYQ2-GJ4APMI-YOSDVAL"
                         }
                 ) || changed;
             }
