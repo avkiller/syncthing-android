@@ -7,9 +7,11 @@ def getSyncthingNativeVersion() {
     def gitDescribe = "git describe --tags".execute([], syncthingSubmoduleDir).text.trim()
 
     // Take "(versionMajor).(versionMinor).(versionPatch)" without leading "v" and ignore what follows after.
-     def matcher = gitDescribe =~ /v?(\d+)\.(\d+)\.(\d+)(?:-.+)?/
+    def matcher = gitDescribe =~ /v?(\d+)\.(\d+)\.(\d+)(?:-.+)?/
     if (matcher.matches()) {
-        return "${matcher[0][1]}.${matcher[0][2]}.${matcher[0][3]}"
+        def version = "${matcher[0][1]}.${matcher[0][2]}.${matcher[0][3]}"
+        logger.lifecycle("Syncthing native version: ${version}")
+        return version
     } else {
         throw new GradleException("getSyncthingNativeVersion: FAILED to extract from '${gitDescribe}'.")
     }
