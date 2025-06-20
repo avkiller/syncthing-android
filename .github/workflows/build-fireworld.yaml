@@ -84,8 +84,9 @@ jobs:
           # set -eu
           # git config --system --add safe.directory '*'
           java -version
-          ./gradlew buildNative
-          ./gradlew lint assembleRelease
+          # ./gradlew buildNative
+          # ./gradlew lint assembleRelease
+          ./gradlew --no-daemon buildNative lintRelease assembleRelease
           # ./gradlew lint assembleRelease --debug --info --scan
           mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/syncthing-${{ env.VERSION }}.apk
 
