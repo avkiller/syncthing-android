@@ -67,7 +67,7 @@ public class ConfigXml {
 
     private static final String TAG = "ConfigXml";
 
-    private Boolean ENABLE_VERBOSE_LOG = false;
+    private Boolean ENABLE_VERBOSE_LOG = true;
 
     public class OpenConfigException extends RuntimeException {
     }
