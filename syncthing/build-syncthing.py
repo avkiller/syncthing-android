@@ -18,7 +18,7 @@ PLATFORM_DIRS = {
 }
 
 # Leave empty to auto-detect version by 'git describe'.
-FORCE_DISPLAY_SYNCTHING_VERSION = ''
+FORCE_DISPLAY_SYNCTHING_VERSION = 'v2.0.0'
 FILENAME_SYNCTHING_BINARY = 'libsyncthingnative.so'
 
 GO_VERSION = '1.24.1'
@@ -42,6 +42,12 @@ BUILD_TARGETS = [
         'goarch': 'arm64',
         'jni_dir': 'arm64-v8a',
         'cc': 'aarch64-linux-android{}-clang',
+    },
+    {
+        'arch': 'x86_64',
+        'goarch': 'amd64',
+        'jni_dir': 'x86_64',
+        'cc': 'x86_64-linux-android{}-clang',
     }
 ]
 
