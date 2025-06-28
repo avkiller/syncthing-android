@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     id("com.android.application")
     alias(libs.plugins.aboutLibraries)
@@ -12,6 +13,7 @@ dependencies {
     implementation(libs.aboutlibraries.compose.m2)
     implementation(libs.aboutlibraries.core)
     implementation(libs.activity.compose)
+    implementation(libs.activity.ktx)
     implementation(libs.android.material)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
@@ -46,8 +48,8 @@ android {
     val versionPatch: kotlin.Int by rootProject.extra
     val versionWrapper: kotlin.Int by rootProject.extra
 
-    compileSdk = 35
-    buildToolsVersion = "35.0.0"
+    compileSdk = 36
+    buildToolsVersion = "36.0.0"
     ndkVersion = "${ndkVersionShared}"
 
     namespace = "com.nutomic.syncthingandroid"
@@ -60,7 +62,7 @@ android {
     defaultConfig {
         applicationId = "com.fireworld.syncthing"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
         versionCode = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionWrapper
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}.${versionWrapper}"
         testApplicationId = "com.fireworld.syncthing.test"
@@ -99,8 +101,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
 
     bundle {

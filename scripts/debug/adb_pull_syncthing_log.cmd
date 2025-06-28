@@ -7,8 +7,8 @@ REM Script Consts.
 SET INTERNAL_STORAGE_MOUNT_POINT=/storage/emulated/0
 REM SET INTERNAL_STORAGE_MOUNT_POINT=/storage/sdcard0
 REM 
-REM 	SET PACKAGE_NAME=com.fireworld.syncthing
-SET PACKAGE_NAME=com.fireworld.syncthing.debug
+REM 	SET PACKAGE_NAME=com.github.catfriend1.syncthingandroid
+SET PACKAGE_NAME=com.github.catfriend1.syncthingandroid.debug
 REM
 echo [INFO] Pulling "syncthing.log" from connected Android device ...
 SET LOG_DATETIMESTAMP=%DATE:~-4%-%DATE:~-7,-5%-%DATE:~-10,-8%_%time:~-11,2%-%time:~-8,2%-%time:~-5,2%

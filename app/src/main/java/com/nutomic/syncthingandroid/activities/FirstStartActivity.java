@@ -1,7 +1,6 @@
 package com.nutomic.syncthingandroid.activities;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -17,11 +16,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +27,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.google.common.io.Files;
 import com.nutomic.syncthingandroid.R;
@@ -54,7 +55,7 @@ import java.util.Arrays;
 
 import javax.inject.Inject;
 
-public class FirstStartActivity extends AppCompatActivity {
+public class FirstStartActivity extends ThemedAppCompatActivity {
 
     private static String TAG = "FirstStartActivity";
     private static final int REQUEST_COARSE_LOCATION = 141;
@@ -150,12 +151,6 @@ public class FirstStartActivity extends AppCompatActivity {
             Log.d(TAG, "We (no longer?) have a valid Syncthing config and will attempt to generate a fresh config.");
         }
 
-        // Make notification bar transparent (API level 21+)
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-
         // Show first start welcome wizard UI.
         setContentView(R.layout.activity_first_start);
         mViewPager = (CustomViewPager) findViewById(R.id.view_pager);
@@ -201,9 +196,6 @@ public class FirstStartActivity extends AppCompatActivity {
 
         // Add bottom dots
         addBottomDots(0);
-
-        // Make notification bar transparent
-        changeStatusBarColor();
 
         mViewPagerAdapter = new ViewPagerAdapter();
         mViewPager.setAdapter(mViewPagerAdapter);
@@ -398,17 +390,6 @@ public class FirstStartActivity extends AppCompatActivity {
     };
 
     /**
-     * Making notification bar transparent
-     */
-    private void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
-    }
-
-    /**
      * View pager adapter
      */
     public class ViewPagerAdapter extends PagerAdapter {
@@ -440,6 +421,10 @@ public class FirstStartActivity extends AppCompatActivity {
                 btnGrantIgnoreDozePerm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                            // We will never reach here, but fix lint.
+                            return;
+                        }
                         requestIgnoreDozePermission();
                     }
                 });
@@ -516,7 +501,7 @@ public class FirstStartActivity extends AppCompatActivity {
     }
 
     @SuppressLint("InlinedApi")
-    @TargetApi(23)
+    @RequiresApi(23)
     private void requestIgnoreDozePermission() {
         Boolean intentFailed = false;
         Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);

@@ -1,5 +1,5 @@
-### UPDATE 2020/07/08
-Android 11 is being expected to be the first version since 4.4 that supports writing to external SD card again using Syncthing. Stay tuned.
+### TL;DR
+Android 11 is the first version since 4.4 that supports writing to external SD card again using Syncthing. That's why the app requests the  "access all files and manage external storage" permission on first usage.
 
 ### Why SD card use together with Syncthing requires special attention
 According to Google's document:
@@ -8,8 +8,8 @@ https://source.android.com/devices/storage/traditional.html
 
 It is true if you did not format the external SD card as adoptable storage but left it as portable. Doing this prevents any native linux app from writing to this card freely. The directories on the SD card that an app can write to are restricted to the following places, for example:
 
-* /storage/[ABCD-EFGH]/Android/data/com.fireworld.syncthing.[debug]/files
-* /storage/[ABCD-EFGH]/Android/media/com.fireworld.syncthing.[debug]
+* /storage/[ABCD-EFGH]/Android/data/com.github.catfriend1.syncthingandroid.[debug]/files
+* /storage/[ABCD-EFGH]/Android/media/com.github.catfriend1.syncthingandroid.[debug]
 
 In Syncthing-Fork, when you are prompted for the directory, you are automatically taken to a writable directory by the built-in directory chooser to help finding out these writable directories with ease. Just create your folder you wish to be used by Syncthing below the suggested directory that opens up on the UI.
 

@@ -4,12 +4,15 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-// import android.util.Log;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.nutomic.syncthingandroid.R;
 import com.nutomic.syncthingandroid.service.RestApi;
@@ -25,6 +28,16 @@ public abstract class SyncthingActivity extends ThemedAppCompatActivity implemen
 
     private SyncthingService mSyncthingService;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        WindowInsetsControllerCompat insetsController = new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView());
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean isDarkMode = currentNightMode == Configuration.UI_MODE_NIGHT_YES;
+        insetsController.setAppearanceLightStatusBars(!isDarkMode);
+        insetsController.setAppearanceLightNavigationBars(!isDarkMode);
+    }
     /**
      * Look for a Toolbar in the layout and bind it as the activity's actionbar with reasonable
      * defaults.
@@ -35,7 +48,10 @@ public abstract class SyncthingActivity extends ThemedAppCompatActivity implemen
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        onPostCreateSetToolbar();
+    }
 
+    private void onPostCreateSetToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar == null) {
             return;

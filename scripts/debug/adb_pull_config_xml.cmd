@@ -5,8 +5,8 @@ cd /d "%SCRIPT_PATH%"
 REM 
 REM Script Consts.
 REM 
-REM 	SET PACKAGE_NAME=com.fireworld.syncthing
-SET PACKAGE_NAME=com.fireworld.syncthing.debug
+REM 	SET PACKAGE_NAME=com.github.catfriend1.syncthingandroid
+SET PACKAGE_NAME=com.github.catfriend1.syncthingandroid.debug
 REM 
 REM 	SET DATA_ROOT=/data/user/0
 SET DATA_ROOT=/data/data

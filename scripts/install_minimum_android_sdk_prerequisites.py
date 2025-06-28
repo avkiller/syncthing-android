@@ -24,7 +24,7 @@ SUPPORTED_PYTHON_PLATFORMS = ['Windows', 'Linux', 'Darwin']
 ANDROID_SDK_TOOLS_VERSION = '11076708'
 ANDROID_SDK_TOOLS_SHASUM_LINUX = '2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258'
 ANDROID_SDK_TOOLS_SHASUM_WINDOWS = '4d6931209eebb1bfb7c7e8b240a6a3cb3ab24479ea294f3539429574b1eec862'
-ANDROID_SDK_VERSION = '35'
+ANDROID_SDK_VERSION = '36'
 
 ANDROID_NDK_VERSION = '28.0.13004108'
 
@@ -147,7 +147,7 @@ if platform.system() not in SUPPORTED_PYTHON_PLATFORMS:
     fail('Unsupported python platform %s. Supported platforms: %s', platform.system(),
          ', '.join(SUPPORTED_PYTHON_PLATFORMS))
 
-prerequisite_tools_dir = os.path.dirname(os.path.realpath(__file__)) + os.path.sep + ".." + os.path.sep + "syncthing-android-prereq"
+prerequisite_tools_dir = os.path.dirname(os.path.realpath(__file__)) + os.path.sep + ".." + os.path.sep + ".." + os.path.sep + "syncthing-android-prereq"
 
 # Check if "sdk-manager" of sdk-tools package is available.
 sdk_manager_bin = which("sdkmanager")

@@ -62,7 +62,7 @@ public class Folder {
     // see PR #6588
     public Boolean disableFsync = false;
     // see PR #6573
-    public int maxConcurrentWrites = 2;
+    public int maxConcurrentWrites = 0;
 
     // Since v1.8.0
     // see PR #6746: "all", "copy_file_range", "duplicate_extents", "ioctl", "sendfile", "standard"

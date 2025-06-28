@@ -17,14 +17,14 @@ The following instructions to solve the problem by preparing the Android TV for 
     *adb devices*
 * To whitelist Syncthing-Fork from doze / Android Battery Optimization, type the following
 
-    *adb shell dumpsys deviceidle whitelist +com.fireworld.syncthing*
+    *adb shell dumpsys deviceidle whitelist +com.github.catfriend1.syncthingandroid*
 
-    *adb shell dumpsys deviceidle whitelist +com.fireworld.syncthing.debug*
+    *adb shell dumpsys deviceidle whitelist +com.github.catfriend1.syncthingandroid.debug*
 * If you ever want to revert this change, type the following in ADB
 
-    *adb shell dumpsys deviceidle whitelist -com.fireworld.syncthing*
+    *adb shell dumpsys deviceidle whitelist -com.github.catfriend1.syncthingandroid*
 
-    *adb shell dumpsys deviceidle whitelist -com.fireworld.syncthing.debug*
+    *adb shell dumpsys deviceidle whitelist -com.github.catfriend1.syncthingandroid.debug*
 
 Related:
 - [GitHub issue](https://github.com/Catfriend1/syncthing-android/issues/192)
