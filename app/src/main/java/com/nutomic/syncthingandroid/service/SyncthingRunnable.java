@@ -477,12 +477,14 @@ public class SyncthingRunnable implements Runnable {
         targetEnv.put("HOME", FileUtils.getSyncthingTildeAbsolutePath());
 
         // Set config, key and database directory.
+        targetEnv.put("STHOMEDIR", mContext.getFilesDir().toString());
         targetEnv.put("STTRACE", TextUtils.join(" ",
                 mPreferences.getStringSet(Constants.PREF_DEBUG_FACILITIES_ENABLED, new HashSet<>())));
         targetEnv.put("STMONITORED", "1");
         targetEnv.put("STNOUPGRADE", "1");
 
         // Since Syncthing v2+: purge deletes from database after 1 year.
+        targetEnv.put("STDBDELETERETENTIONINTERVAL", "8766h");
 
         if (mPreferences.getBoolean(Constants.PREF_USE_TOR, false)) {
             targetEnv.put("all_proxy", "socks5://localhost:9050");
