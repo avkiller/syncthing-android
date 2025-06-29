@@ -18,10 +18,7 @@ public class JobUtils {
 
     private static final int TOLERATED_INACCURACY_IN_SECONDS = 120;
 
-<<<<<<< HEAD
     // @TargetApi(21)
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     public static void scheduleSyncTriggerServiceJob(Context context, int delayInSeconds, boolean startRun) {
         if (delayInSeconds < 0) {
             delayInSeconds = 0;
@@ -52,10 +49,7 @@ public class JobUtils {
                 "(+" + Integer.toString(TOLERATED_INACCURACY_IN_SECONDS) + ") seconds.");
     }
 
-<<<<<<< HEAD
     // @TargetApi(21)
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     public static void cancelAllScheduledJobs(Context context) {
         JobScheduler jobScheduler = (JobScheduler) context.getSystemService(context.JOB_SCHEDULER_SERVICE);
         jobScheduler.cancelAll();

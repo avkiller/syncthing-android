@@ -43,7 +43,6 @@ public class RunConditionMonitor {
     private Boolean ENABLE_VERBOSE_LOG = false;
 
     public static final String ACTION_SYNC_TRIGGER_FIRED =
-<<<<<<< HEAD
         "com.fireworld.syncthing.service.RunConditionMonitor.ACTION_SYNC_TRIGGER_FIRED";
 
     public static final String ACTION_UPDATE_SHOULDRUN_DECISION =
@@ -51,15 +50,6 @@ public class RunConditionMonitor {
 
     public static final String EXTRA_BEGIN_ACTIVE_TIME_WINDOW =
         "com.fireworld.syncthing.service.RunConditionMonitor.BEGIN_ACTIVE_TIME_WINDOW";
-=======
-        "com.github.catfriend1.syncthingandroid.service.RunConditionMonitor.ACTION_SYNC_TRIGGER_FIRED";
-
-    public static final String ACTION_UPDATE_SHOULDRUN_DECISION =
-        "com.github.catfriend1.syncthingandroid.service.RunConditionMonitor.ACTION_UPDATE_SHOULDRUN_DECISION";
-
-    public static final String EXTRA_BEGIN_ACTIVE_TIME_WINDOW =
-        "com.github.catfriend1.syncthingandroid.service.RunConditionMonitor.BEGIN_ACTIVE_TIME_WINDOW";
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     private @Nullable Object mSyncStatusObserverHandle = null;
     private final SyncStatusObserver mSyncStatusObserver = new SyncStatusObserver() {
@@ -736,10 +726,7 @@ public class RunConditionMonitor {
     /**
      * Functions for run condition information retrieval.
      */
-<<<<<<< HEAD
     // @TargetApi(17)
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     private boolean isCharging_API17() {
         Intent intent = mContext.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         int plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
@@ -748,10 +735,7 @@ public class RunConditionMonitor {
             plugged == BatteryManager.BATTERY_PLUGGED_WIRELESS;
     }
 
-<<<<<<< HEAD
     // @TargetApi(21)
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     private boolean isPowerSaving() {
         PowerManager powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         if (powerManager == null) {

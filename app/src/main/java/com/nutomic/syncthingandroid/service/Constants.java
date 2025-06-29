@@ -234,11 +234,7 @@ public class Constants {
     /**
      * Name of the folder containing the index database.
      */
-<<<<<<< HEAD
     private static final String INDEX_DB_FOLDER = "index-v2";
-=======
-    private static final String INDEX_DB_FOLDER = "index-v0.14.0.db";
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     public static File getIndexDbFolder(Context context) {
         return new File(context.getFilesDir(), INDEX_DB_FOLDER);
@@ -284,20 +280,12 @@ public class Constants {
      * Log file storage locations.
      */
     public static File getAndroidLogFile(Context context) {
-<<<<<<< HEAD
         // e.g. /data/data/com.fireworld.syncthing.debug/cache/android.log
-=======
-        // e.g. /data/data/com.github.catfriend1.syncthingandroid.debug/cache/android.log
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
         return new File(context.getCacheDir(), "android.log");
     }
 
     public static File getSyncthingLogFile(Context context) {
-<<<<<<< HEAD
         // e.g. /data/data/com.fireworld.syncthing.debug/files/syncthing.log
-=======
-        // e.g. /data/data/com.github.catfriend1.syncthingandroid.debug/files/syncthing.log
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
         return new File(context.getFilesDir(), "syncthing.log");
     }
 

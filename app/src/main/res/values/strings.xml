@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-<<<<<<< HEAD
     <string name="app_name">Syncthing</string>
-=======
-    <string name="app_name">Syncthing-Fork</string>
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     <string name="app_description">An open, trustworthy and decentralized file synchronization application.</string>
 

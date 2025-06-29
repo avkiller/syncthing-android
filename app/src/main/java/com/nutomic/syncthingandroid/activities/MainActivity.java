@@ -89,11 +89,7 @@ public class MainActivity extends SyncthingActivity
      * Intent action to exit app.
      */
     public static final String ACTION_EXIT =
-<<<<<<< HEAD
             "com.fireworld.syncthing.MainActivity.EXIT";
-=======
-            "com.github.catfriend1.syncthingandroid.MainActivity.EXIT";
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Time after first start when usage reporting dialog should be shown.
@@ -450,11 +446,8 @@ public class MainActivity extends SyncthingActivity
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(true);
         }
-<<<<<<< HEAD
 
                         // rescanAll();
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     }
 
     @Override

@@ -98,7 +98,6 @@ public class SyncthingRunnable implements Runnable {
         mUseRoot = mPreferences.getBoolean(Constants.PREF_USE_ROOT, false) && Shell.SU.available();
         switch (command) {
             case deviceid:
-<<<<<<< HEAD
                 mCommand = new String[]{mSyncthingBinary.getPath(), "device-id"};
                 break;
             case generate:
@@ -112,21 +111,6 @@ public class SyncthingRunnable implements Runnable {
                 break;
             case resetdeltas:
                 mCommand = new String[]{mSyncthingBinary.getPath(), "serve", "--debug-reset-delta-idxs"};
-=======
-                mCommand = new String[]{mSyncthingBinary.getPath(), "--home=" + mContext.getFilesDir().toString(), "--device-id"};
-                break;
-            case generate:
-                mCommand = new String[]{mSyncthingBinary.getPath(), "--generate=" + mContext.getFilesDir().toString(), "--no-default-folder", "--logflags=0"};
-                break;
-            case main:
-                mCommand = new String[]{mSyncthingBinary.getPath(), "--home=" + mContext.getFilesDir().toString(), "--no-browser"};
-                break;
-            case resetdatabase:
-                mCommand = new String[]{mSyncthingBinary.getPath(), "--home=" + mContext.getFilesDir().toString(), "--reset-database"};
-                break;
-            case resetdeltas:
-                mCommand = new String[]{mSyncthingBinary.getPath(), "--home=" + mContext.getFilesDir().toString(), "--reset-deltas"};
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
                 break;
             default:
                 throw new InvalidParameterException("Unknown command option");
@@ -492,20 +476,14 @@ public class SyncthingRunnable implements Runnable {
         // Set home directory to data folder for web GUI folder picker.
         targetEnv.put("HOME", FileUtils.getSyncthingTildeAbsolutePath());
 
-<<<<<<< HEAD
         // Set config, key and database directory.
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
         targetEnv.put("STTRACE", TextUtils.join(" ",
                 mPreferences.getStringSet(Constants.PREF_DEBUG_FACILITIES_ENABLED, new HashSet<>())));
         targetEnv.put("STMONITORED", "1");
         targetEnv.put("STNOUPGRADE", "1");
-<<<<<<< HEAD
 
         // Since Syncthing v2+: purge deletes from database after 1 year.
 
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
         if (mPreferences.getBoolean(Constants.PREF_USE_TOR, false)) {
             targetEnv.put("all_proxy", "socks5://localhost:9050");
             targetEnv.put("ALL_PROXY_NO_FALLBACK", "1");

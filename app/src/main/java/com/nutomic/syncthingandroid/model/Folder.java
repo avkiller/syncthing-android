@@ -61,11 +61,7 @@ public class Folder {
     public String blockPullOrder = "standard";
     // see PR #6588
     public Boolean disableFsync = false;
-<<<<<<< HEAD
     // see PR #6573
-=======
-    // see PR #6573, #10200
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     public int maxConcurrentWrites = 0;
 
     // Since v1.8.0

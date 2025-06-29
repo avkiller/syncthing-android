@@ -3,7 +3,6 @@ plugins {
 }
 
 def getSyncthingNativeVersion() {
-<<<<<<< HEAD
     def syncthingSubmoduleDir = new File(project.rootDir, "syncthing/src/github.com/avkiller/syncthing")
     def gitDescribe = "git describe --tags".execute([], syncthingSubmoduleDir).text.trim()
 
@@ -13,26 +12,13 @@ def getSyncthingNativeVersion() {
         def version = "${matcher[0][1]}.${matcher[0][2]}.${matcher[0][3]}"
         logger.lifecycle("Syncthing native version: ${version}")
         return version
-=======
-    def syncthingSubmoduleDir = new File(project.rootDir, "syncthing/src/github.com/syncthing/syncthing")
-    def gitDescribe = "git describe --always".execute([], syncthingSubmoduleDir).text.trim()
-
-    // Take "(versionMajor).(versionMinor).(versionPatch)" without leading "v" and ignore what follows after.
-     def matcher = gitDescribe =~ /v?(\d+)\.(\d+)\.(\d+)(?:-.+)?/
-    if (matcher.matches()) {
-        return "${matcher[0][1]}.${matcher[0][2]}.${matcher[0][3]}"
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     } else {
         throw new GradleException("getSyncthingNativeVersion: FAILED to extract from '${gitDescribe}'.")
     }
 }
 
 def getSourceDateEpoch() {
-<<<<<<< HEAD
     def syncthingSubmoduleDir = new File(project.rootDir, "syncthing/src/github.com/avkiller/syncthing")
-=======
-    def syncthingSubmoduleDir = new File(project.rootDir, "syncthing/src/github.com/syncthing/syncthing")
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     def sourceDateEpoch = "git log -1 --format=%ct".execute([], syncthingSubmoduleDir).text.trim()
     return sourceDateEpoch
 }
@@ -41,12 +27,8 @@ def verifySyncthingNativeVersionMatchesApp() {
     def syncthingNativeVersion = getSyncthingNativeVersion()
     def syncthingAppVersion = "${rootProject.ext.get("versionMajor")}.${rootProject.ext.get("versionMinor")}.${rootProject.ext.get("versionPatch")}"
     if (syncthingNativeVersion != syncthingAppVersion) {
-<<<<<<< HEAD
         // throw new GradleException("Checked out SyncthingNative version (${syncthingNativeVersion}) differs from App version (${syncthingAppVersion}). Please verify that the submodule refers to the correct commit.")
         logger.warn("WARNING: Checked out SyncthingNative version: (${syncthingNativeVersion}) differs from App version: (${syncthingAppVersion}). Please verify that the submodule refers to the correct commit.")
-=======
-        throw new GradleException("Checked out SyncthingNative version (${syncthingNativeVersion}) differs from App version (${syncthingAppVersion}). Please verify that the submodule refers to the correct commit.")
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     }
 }
 
@@ -55,11 +37,7 @@ task buildNative(type: PythonTask) {
 
     // Required to get reproducible builds, see https://github.com/Catfriend1/syncthing-android/issues/1383
     environment "SOURCE_DATE_EPOCH", getSourceDateEpoch()
-<<<<<<< HEAD
     environment "BUILD_HOST", "avkiller-syncthing-android"
-=======
-    environment "BUILD_HOST", "Catfriend1-syncthing-android"
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     environment "BUILD_USER", "reproducible-build"
 
     verifySyncthingNativeVersionMatchesApp();

@@ -1,10 +1,6 @@
 package com.nutomic.syncthingandroid.activities
 
 import android.os.Bundle
-<<<<<<< HEAD
-=======
-
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.activity.compose.setContent
@@ -26,29 +22,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-<<<<<<< HEAD
 import com.mikepenz.aboutlibraries.ui.compose.rememberLibraries
 import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
-=======
-
-import com.mikepenz.aboutlibraries.ui.compose.rememberLibraries
-import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
-
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 import com.nutomic.syncthingandroid.R
 
 class LicenseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-<<<<<<< HEAD
         // Opt-in to edge-to-edge
         WindowCompat.setDecorFitsSystemWindows(window, false)
-=======
-
-        // Opt-in to edge-to-edge
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
         setContent {
             LicenseScreen()
         }

@@ -30,10 +30,6 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.Toast;
-<<<<<<< HEAD
-=======
-
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -81,11 +77,7 @@ public class SettingsActivity extends SyncthingActivity {
     public static final int RESULT_RESTART_APP = 3461;
 
     public static final String EXTRA_OPEN_SUB_PREF_SCREEN =
-<<<<<<< HEAD
             "com.fireworld.syncthing.activities.SettingsActivity.OPEN_SUB_PREF_SCREEN";
-=======
-            "com.github.catfriend1.syncthingandroid.activities.SettingsActivity.OPEN_SUB_PREF_SCREEN";
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,15 +243,12 @@ public class SettingsActivity extends SyncthingActivity {
         }
 
         /**
-<<<<<<< HEAD
          * The ActionBar overlaps the preferences view.
          * Move the preferences view below the ActionBar.
          */
                 // Calculate ActionBar height
 
         /**
-=======
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
          * Loads layout, sets version from Rest API.
          *
          * Manual target API as we manually check if ActionBar is available (for ActionBar back button).

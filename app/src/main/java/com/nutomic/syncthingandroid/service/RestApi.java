@@ -92,21 +92,13 @@ public class RestApi {
      * Intents we sent to to other apps that subscribed to us.
      */
     private static final String ACTION_NOTIFY_FOLDER_SYNC_COMPLETE =
-<<<<<<< HEAD
             "com.fireworld.syncthing.ACTION_NOTIFY_FOLDER_SYNC_COMPLETE";
-=======
-            "com.github.catfriend1.syncthingandroid.ACTION_NOTIFY_FOLDER_SYNC_COMPLETE";
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Permission for apps receiving our broadcast intents.
      */
      private static final String PERMISSION_RECEIVE_SYNC_STATUS =
-<<<<<<< HEAD
             "com.fireworld.syncthing.permission.RECEIVE_SYNC_STATUS";
-=======
-            "com.github.catfriend1.syncthingandroid.permission.RECEIVE_SYNC_STATUS";
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Compares folders by labels, uses the folder ID as fallback if the label is empty

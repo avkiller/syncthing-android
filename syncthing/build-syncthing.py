@@ -18,11 +18,7 @@ PLATFORM_DIRS = {
 }
 
 # Leave empty to auto-detect version by 'git describe'.
-<<<<<<< HEAD
 FORCE_DISPLAY_SYNCTHING_VERSION = 'v2.0.0'
-=======
-FORCE_DISPLAY_SYNCTHING_VERSION = ''
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 FILENAME_SYNCTHING_BINARY = 'libsyncthingnative.so'
 
 GO_VERSION = '1.24.1'
@@ -48,15 +44,6 @@ BUILD_TARGETS = [
         'cc': 'aarch64-linux-android{}-clang',
     },
     {
-<<<<<<< HEAD
-=======
-        'arch': 'x86',
-        'goarch': '386',
-        'jni_dir': 'x86',
-        'cc': 'i686-linux-android{}-clang',
-    },
-    {
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
         'arch': 'x86_64',
         'goarch': 'amd64',
         'jni_dir': 'x86_64',
@@ -64,10 +51,6 @@ BUILD_TARGETS = [
     }
 ]
 
-<<<<<<< HEAD
-=======
-# If building locally for Android studio tests, build only required arch.
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 if os.environ.get('COMPUTERNAME', '') == 'NET2019':
     BUILD_TARGETS = [t for t in BUILD_TARGETS if t['arch'] in ('arm64', 'x86_64')]
 
@@ -269,13 +252,9 @@ if platform.system() not in PLATFORM_DIRS:
 
 module_dir = os.path.dirname(os.path.realpath(__file__))
 project_dir = os.path.realpath(os.path.join(module_dir, '..'))
-<<<<<<< HEAD
 print("project_dir", project_dir)
 syncthing_dir = os.path.join(module_dir, 'src', 'github.com', 'avkiller', 'syncthing')
 print("syncthing_dir", syncthing_dir)
-=======
-syncthing_dir = os.path.join(module_dir, 'src', 'github.com', 'syncthing', 'syncthing')
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 prerequisite_tools_dir = os.path.dirname(os.path.realpath(__file__)) + os.path.sep + ".." + os.path.sep + ".." + os.path.sep + "syncthing-android-prereq"
 min_sdk = get_min_sdk(project_dir)
 
@@ -324,11 +303,7 @@ else:
         '-C',
         syncthing_dir,
         'describe',
-<<<<<<< HEAD
         '--tags'
-=======
-        '--always'
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     ]).strip();
     syncthingVersion = syncthingVersion.decode().replace("rc", "preview");
 
@@ -373,7 +348,6 @@ for target in BUILD_TARGETS:
 
     # Determine path of source artifact
     source_artifact = os.path.join(syncthing_dir, 'syncthing')
-<<<<<<< HEAD
     print("source_artifact" + source_artifact)
 
     # Copy compiled binary to jniLibs folder
@@ -383,14 +357,6 @@ for target in BUILD_TARGETS:
         os.makedirs(target_dir)
     target_artifact = os.path.join(target_dir, FILENAME_SYNCTHING_BINARY)
     print("target_artifact"+ target_artifact)
-=======
-
-    # Copy compiled binary to jniLibs folder
-    target_dir = os.path.join(project_dir, 'app', 'src', 'main', 'jniLibs', target['jni_dir'])
-    if not os.path.isdir(target_dir):
-        os.makedirs(target_dir)
-    target_artifact = os.path.join(target_dir, FILENAME_SYNCTHING_BINARY)
->>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     if os.path.exists(target_artifact):
         os.unlink(target_artifact)
     os.rename(os.path.join(syncthing_dir, 'syncthing'), target_artifact)
