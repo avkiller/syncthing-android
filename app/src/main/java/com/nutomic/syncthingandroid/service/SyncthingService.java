@@ -60,95 +60,158 @@ public class SyncthingService extends Service {
      * Intent action to perform a Syncthing restart.
      */
     public static final String ACTION_RESTART =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.RESTART";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.RESTART";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Intent action to perform a Syncthing stop.
      */
     public static final String ACTION_STOP =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.STOP";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.STOP";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Intent action to reset Syncthing's database.
      */
     public static final String ACTION_RESET_DATABASE =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.RESET_DATABASE";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.RESET_DATABASE";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Intent action to reset Syncthing's delta indexes.
      */
     public static final String ACTION_RESET_DELTAS =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.RESET_DELTAS";
 
     public static final String ACTION_REFRESH_NETWORK_INFO =
             "com.fireworld.syncthing.SyncthingService.REFRESH_NETWORK_INFO";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.RESET_DELTAS";
+
+    public static final String ACTION_REFRESH_NETWORK_INFO =
+            "com.github.catfriend1.syncthingandroid.SyncthingService.REFRESH_NETWORK_INFO";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Intent action to permanently ignore a device connection request.
      */
     public static final String ACTION_IGNORE_DEVICE =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.IGNORE_DEVICE";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.IGNORE_DEVICE";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Intent action to permanently ignore a folder share request.
      */
     public static final String ACTION_IGNORE_FOLDER =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.IGNORE_FOLDER";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.IGNORE_FOLDER";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Intent action to override folder changes.
      */
     public static final String ACTION_OVERRIDE_CHANGES =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.OVERRIDE_CHANGES";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.OVERRIDE_CHANGES";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Intent action to revert local folder changes.
      */
     public static final String ACTION_REVERT_LOCAL_CHANGES =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.REVERT_LOCAL_CHANGES";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.REVERT_LOCAL_CHANGES";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
 
     /**
      * Extra used together with ACTION_IGNORE_DEVICE, ACTION_IGNORE_FOLDER.
      */
     public static final String EXTRA_NOTIFICATION_ID =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.EXTRA_NOTIFICATION_ID";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.EXTRA_NOTIFICATION_ID";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Extra used together with ACTION_IGNORE_DEVICE
      */
     public static final String EXTRA_DEVICE_ID =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.EXTRA_DEVICE_ID";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.EXTRA_DEVICE_ID";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Extra used together with ACTION_IGNORE_DEVICE
      */
     public static final String EXTRA_DEVICE_ADDRESS =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.EXTRA_DEVICE_ADDRESS";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.EXTRA_DEVICE_ADDRESS";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Extra used together with ACTION_IGNORE_DEVICE
      */
     public static final String EXTRA_DEVICE_NAME =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.EXTRA_DEVICE_NAME";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.EXTRA_DEVICE_NAME";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Extra used together with ACTION_IGNORE_FOLDER
      */
     public static final String EXTRA_FOLDER_ID =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.EXTRA_FOLDER_ID";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.EXTRA_FOLDER_ID";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Extra used together with ACTION_IGNORE_FOLDER
      */
     public static final String EXTRA_FOLDER_LABEL =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.EXTRA_FOLDER_LABEL";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.EXTRA_FOLDER_LABEL";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * Extra used together with ACTION_STOP.
      */
     public static final String EXTRA_STOP_AFTER_CRASHED_NATIVE =
+<<<<<<< HEAD
             "com.fireworld.syncthing.SyncthingService.EXTRA_STOP_AFTER_CRASHED_NATIVE";
+=======
+            "com.github.catfriend1.syncthingandroid.SyncthingService.EXTRA_STOP_AFTER_CRASHED_NATIVE";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     public interface OnServiceStateChangeListener {
         void onServiceStateChange(State currentState);
@@ -814,7 +877,11 @@ public class SyncthingService extends Service {
      * Exports the local config and keys to {@link Constants#EXPORT_PATH}.
      *
      * Test with Android Virtual Device using emulator.
+<<<<<<< HEAD
      * cls & adb shell su 0 "ls -a -l -R /data/data/com.fireworld.syncthing.debug/files; echo === SDCARD ===; ls -a -l -R /storage/emulated/0/backups/syncthing"
+=======
+     * cls & adb shell su 0 "ls -a -l -R /data/data/com.github.catfriend1.syncthingandroid.debug/files; echo === SDCARD ===; ls -a -l -R /storage/emulated/0/backups/syncthing"
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
      *
      */
     public boolean exportConfig() {
@@ -933,7 +1000,11 @@ public class SyncthingService extends Service {
      * Imports config and keys from {@link Constants#EXPORT_PATH}.
      *
      * Test with Android Virtual Device using emulator.
+<<<<<<< HEAD
      * cls & adb shell su 0 "ls -a -l -R /data/data/com.fireworld.syncthing.debug/files; echo === SDCARD ===; ls -a -l -R /storage/emulated/0/backups/syncthing"
+=======
+     * cls & adb shell su 0 "ls -a -l -R /data/data/com.github.catfriend1.syncthingandroid.debug/files; echo === SDCARD ===; ls -a -l -R /storage/emulated/0/backups/syncthing"
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
      *
      * @return True if the import was successful, false otherwise (eg if files aren't found).
      */
@@ -968,7 +1039,10 @@ public class SyncthingService extends Service {
 
                 Constants.PRIVATE_KEY_FILE,
                 Constants.PUBLIC_KEY_FILE
+<<<<<<< HEAD
 
+=======
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
             );
             for (final String checkFile : checkFiles) {
                 if (zipFile.getFileHeader(checkFile) == null) {

@@ -48,7 +48,11 @@ public class FolderPickerActivity extends SyncthingActivity
     private static final String TAG = "FolderPickerActivity";
 
     private static final String EXTRA_INITIAL_DIRECTORY =
+<<<<<<< HEAD
             "com.fireworld.syncthing.activities.FolderPickerActivity.INITIAL_DIRECTORY";
+=======
+            "com.github.catfriend1.syncthingandroid.activities.FolderPickerActivity.INITIAL_DIRECTORY";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     /**
      * If requested by {@link #createIntent}, we'll only use one root dir and enforce
@@ -56,10 +60,17 @@ public class FolderPickerActivity extends SyncthingActivity
      * See issue #366.
      */
     private static final String EXTRA_ROOT_DIRECTORY =
+<<<<<<< HEAD
             "com.fireworld.syncthing.activities.FolderPickerActivity.ROOT_DIRECTORY";
 
     public static final String EXTRA_RESULT_DIRECTORY =
             "com.fireworld.syncthing.activities.FolderPickerActivity.RESULT_DIRECTORY";
+=======
+            "com.github.catfriend1.syncthingandroid.activities.FolderPickerActivity.ROOT_DIRECTORY";
+
+    public static final String EXTRA_RESULT_DIRECTORY =
+            "com.github.catfriend1.syncthingandroid.activities.FolderPickerActivity.RESULT_DIRECTORY";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     public static final int DIRECTORY_REQUEST_CODE = 234;
 

@@ -30,9 +30,14 @@
     <style name="Theme.Syncthing" parent="Theme.Syncthing.Base">
         <!-- DialogTheme produces weird background on 4.4, so we only use it on API 21+ -->
         <item name="alertDialogTheme">@style/Theme.Syncthing.Dialog</item>
+<<<<<<< HEAD
 
     </style>
 
+=======
+    </style>
+
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
     <!-- Button themes -->
     <style name="Theme.Syncthing.GreyButton" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColor">@color/btn_welcome_slide_color</item>

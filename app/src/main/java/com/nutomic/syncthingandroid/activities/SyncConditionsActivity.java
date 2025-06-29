@@ -41,10 +41,17 @@ public class SyncConditionsActivity extends SyncthingActivity {
     private static final String TAG = "SyncConditionsActivity";
 
     private static final String EXTRA_OBJECT_PREFIX_AND_ID =
+<<<<<<< HEAD
             "com.fireworld.syncthing.activities.SyncConditionsActivity.OBJECT_PREFIX_AND_ID";
 
     private static final String EXTRA_OBJECT_READABLE_NAME =
             "com.fireworld.syncthing.activities.SyncConditionsActivity.OBJECT_READABLE_NAME";
+=======
+            "com.github.catfriend1.syncthingandroid.activities.SyncConditionsActivity.OBJECT_PREFIX_AND_ID";
+
+    private static final String EXTRA_OBJECT_READABLE_NAME =
+            "com.github.catfriend1.syncthingandroid.activities.SyncConditionsActivity.OBJECT_READABLE_NAME";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     // UI elements
     private SwitchCompat mSyncOnWifi;

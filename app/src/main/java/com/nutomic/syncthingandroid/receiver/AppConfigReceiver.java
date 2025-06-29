@@ -26,6 +26,7 @@ public class AppConfigReceiver extends BroadcastReceiver {
 
     /**
      * Start the Syncthing-Service
+<<<<<<< HEAD
      * adb shell am broadcast -a com.fireworld.syncthing.action.FOLLOW -p com.fireworld.syncthing.debug
      */
     private static final String ACTION_FOLLOW = "com.fireworld.syncthing.action.FOLLOW";
@@ -43,6 +44,25 @@ public class AppConfigReceiver extends BroadcastReceiver {
      * notification is presented to the user.
      */
     private static final String ACTION_STOP  = "com.fireworld.syncthing.action.STOP";
+=======
+     * adb shell am broadcast -a com.github.catfriend1.syncthingandroid.action.FOLLOW -p com.github.catfriend1.syncthingandroid.debug
+     */
+    private static final String ACTION_FOLLOW = "com.github.catfriend1.syncthingandroid.action.FOLLOW";
+
+    /**
+     * Start the Syncthing-Service
+     * adb shell am broadcast -a com.github.catfriend1.syncthingandroid.action.START -p com.github.catfriend1.syncthingandroid.debug
+     */
+    private static final String ACTION_START = "com.github.catfriend1.syncthingandroid.action.START";
+
+    /**
+     * Stop the Syncthing-Service
+     * adb shell am broadcast -a com.github.catfriend1.syncthingandroid.action.STOP -p com.github.catfriend1.syncthingandroid.debug
+     * If startServiceOnBoot is enabled the service must not be stopped. Instead a
+     * notification is presented to the user.
+     */
+    private static final String ACTION_STOP  = "com.github.catfriend1.syncthingandroid.action.STOP";
+>>>>>>> b9aaf3c6fe60ebf5efc8ecc95ac3f27e6910e967
 
     @Inject NotificationHandler mNotificationHandler;
 
