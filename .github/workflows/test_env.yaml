@@ -17,6 +17,7 @@ jobs:
       - name: set java home
         run: |
             echo "JAVA_HOME=$JAVA_HOME_21_X64" >> $GITHUB_ENV
+            java -version
       - name: clean cache
         run: |
             java -version

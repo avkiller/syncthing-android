@@ -1,0 +1,104 @@
+name: Release App for fireworld
+
+permissions:
+  contents: write
+  packages: read
+
+on:
+  workflow_dispatch:
+
+env:
+  TAG_NAME: "nightly"
+
+jobs:
+  release:
+    name: Release Build and Publish
+    runs-on: ubuntu-latest
+    container: ghcr.io/avkiller/syncthing-android-builder
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Ensure release branch
+        run: |
+          git config --system --add safe.directory '*'
+          if ! git branch -a --contains $(git rev-parse HEAD) | grep release >/dev/null; then
+            echo "Tag is not part of release branch - aborting..."
+            exit 1
+          fi
+
+      - name: Get app version from libs.versions.toml
+        id: get_version
+        run: |
+          set -eu
+          VERSION=$(grep 'version-name = ' gradle/libs.versions.toml | cut -d '"' -f 2)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Get commit hash
+        if: false
+        id: get_commit_hash
+        run: |
+          set -eu
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            COMMIT_HASH_LONG="${{ github.event.pull_request.head.sha }}"
+          else
+            COMMIT_HASH_LONG="${{ github.sha }}"
+          fi
+          COMMIT_HASH_SHORT=$(echo "$COMMIT_HASH_LONG" | cut -c1-7)
+          echo "COMMIT_HASH=${COMMIT_HASH_SHORT}" >> $GITHUB_ENV
+
+       - name: Get tag version
+        run: |
+          # 如果是手动触发 (workflow_dispatch)
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            # 获取所有 Tag（确保包含远程 Tag）
+            git fetch --tags
+            # 按版本号排序获取最新 Tag（兼容语义化版本）
+            LATEST_TAG=$(git tag --sort=-v:refname | head -n 1 || echo "nightly")
+
+            # 去掉 Tag 名称中的 'v' 前缀
+            # VERSION="${LATEST_TAG}"
+          else
+           # 原有逻辑：从推送的 Tag 中提取版本号
+           TAG_VERSION="${GITHUB_REF##*/}"
+           # VERSION="${TAG_VERSION}"
+          fi
+
+
+          # 将信息写入环境变量
+          echo "TAG_NAME=$LATEST_TAG" >> $GITHUB_ENV
+
+      - name: build_release
+        env:
+          SYNCTHING_RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_ALIAS }}
+          SIGNING_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          SYNCTHING_RELEASE_STORE_FILE: '${{ runner.temp }}/signing-keystore.jks'
+        shell: bash
+        run: |
+          set -eu
+          echo '${{ secrets.ANDROID_SIGNING_KEY }}' | base64 -d > "$SYNCTHING_RELEASE_STORE_FILE"
+          java -version
+          ./gradlew --no-daemon buildNative lintRelease assembleRelease
+          rm "$SYNCTHING_RELEASE_STORE_FILE"
+
+      - name: prepare-artifacts
+        shell: bash
+        run: |
+          set -eu
+          #
+          mv "app/build/outputs/apk/release/app-release.apk" "app/build/outputs/apk/release/syncthingandroid_release_v${{ env.VERSION }}.apk"
+          #
+          cd "app/build/outputs/apk/release"
+          echo '${{ secrets.GNUPG_SIGNING_KEY_BASE64 }}' | base64 -d | gpg --import
+          sha256sum "syncthingandroid_release_v${{ env.VERSION }}.apk" | gpg --clearsign > sha256sum.txt.asc
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "app/build/outputs/apk/release/*.apk,"
+          artifactErrorsFailBuild: true
+          name: Syncthing- v${{ env.VERSION }}
+          bodyFile: "app/src/main/play/release-notes/en-US/default.txt"
+          prerelease: ${{ contains('-rc.', github.ref_name) }}
+          draft: true
