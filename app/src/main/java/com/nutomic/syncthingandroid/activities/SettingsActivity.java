@@ -30,7 +30,6 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -78,7 +77,7 @@ public class SettingsActivity extends SyncthingActivity {
     public static final int RESULT_RESTART_APP = 3461;
 
     public static final String EXTRA_OPEN_SUB_PREF_SCREEN =
-            "com.github.catfriend1.syncthingandroid.activities.SettingsActivity.OPEN_SUB_PREF_SCREEN";
+            "com.fireworld.syncthing.activities.SettingsActivity.OPEN_SUB_PREF_SCREEN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,6 +241,12 @@ public class SettingsActivity extends SyncthingActivity {
             ((SyncthingApp) getActivity().getApplication()).component().inject(this);
             setHasOptionsMenu(true);
         }
+
+        /**
+         * The ActionBar overlaps the preferences view.
+         * Move the preferences view below the ActionBar.
+         */
+                // Calculate ActionBar height
 
         /**
          * Loads layout, sets version from Rest API.

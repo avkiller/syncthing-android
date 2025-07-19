@@ -74,20 +74,20 @@ import static com.nutomic.syncthingandroid.service.RunConditionMonitor.EXTRA_BEG
  */
 public class FolderActivity extends SyncthingActivity {
     public static final String EXTRA_DEVICE_ID =
-            "com.github.catfriend1.syncthingandroid.activities.FolderActivity.DEVICE_ID";
+            "com.fireworld.syncthing.activities.FolderActivity.DEVICE_ID";
 
     public static final String EXTRA_FOLDER_ID =
-            "com.github.catfriend1.syncthingandroid.activities.FolderActivity.FOLDER_ID";
+            "com.fireworld.syncthing.activities.FolderActivity.FOLDER_ID";
     public static final String EXTRA_FOLDER_LABEL =
-            "com.github.catfriend1.syncthingandroid.activities.FolderActivity.FOLDER_LABEL";
+            "com.fireworld.syncthing.activities.FolderActivity.FOLDER_LABEL";
     public static final String EXTRA_IS_CREATE =
-            "com.github.catfriend1.syncthingandroid.activities.FolderActivity.IS_CREATE";
+            "com.fireworld.syncthing.activities.FolderActivity.IS_CREATE";
     public static final String EXTRA_NOTIFICATION_ID =
-            "com.github.catfriend1.syncthingandroid.activities.FolderActivity.NOTIFICATION_ID";
+            "com.fireworld.syncthing.activities.FolderActivity.NOTIFICATION_ID";
     public static final String EXTRA_RECEIVE_ENCRYPTED =
-            "com.github.catfriend1.syncthingandroid.activities.FolderActivity.RECEIVE_ENCRYPTED";
+            "com.fireworld.syncthing.activities.FolderActivity.RECEIVE_ENCRYPTED";
     public static final String EXTRA_REMOTE_ENCRYPTED =
-            "com.github.catfriend1.syncthingandroid.activities.FolderActivity.REMOTE_ENCRYPTED";
+            "com.fireworld.syncthing.activities.FolderActivity.REMOTE_ENCRYPTED";
 
     private static final String TAG = "FolderActivity";
 
@@ -956,17 +956,21 @@ public class FolderActivity extends SyncthingActivity {
         // Derive DocumentFile handle from SAF tree Uri where we have write access.
         DocumentFile dfFolder = DocumentFile.fromTreeUri(this, uriFolderRoot);
 
-        // Create ".stfolder" directory.
+        // Create ".stfolder" marker directory.
         DocumentFile dfFolderMarkerDir = FileUtils.safCreateDirectory(dfFolder, FOLDER_MARKER_DIR_NAME);
         if (dfFolderMarkerDir != null) {
-            // Create ".stfolder/DO_NOT_DELETE.txt" file.
+
+        // Create ".stfolder/DO_NOT_DELETE" file.
             FileUtils.safCreateFile(this, dfFolderMarkerDir, DO_NOT_DELETE_FILE_NAME + ".txt", DO_NOT_DELETE_FILE_NAME);
         }
+
+        // Write "DO_NOT_DELETE" text content.
 
         // Create ".stversions" directory.
         DocumentFile dfStVersionsDir = FileUtils.safCreateDirectory(dfFolder, Constants.FOLDER_NAME_STVERSIONS);
         if (dfStVersionsDir != null) {
-            // Create ".stversions/.nomedia" file.
+
+        // Write ".stversions/.nomedia" file.
             FileUtils.safCreateFile(this, dfStVersionsDir, ".nomedia", "");
         }
     }

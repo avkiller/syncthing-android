@@ -82,12 +82,13 @@ public class BootReceiver extends BroadcastReceiver {
         return sp.getBoolean(Constants.PREF_USE_ROOT, false);
     }
 
+    // @TargetApi(17)
     /**
      * Prerequisistes:
      * - android.permission.WRITE_SETTINGS
      * - android.permission.WRITE_SECURE_SETTINGS
-     *      adb shell pm grant com.github.catfriend1.syncthingandroid android.permission.WRITE_SECURE_SETTINGS
-     *      adb shell pm grant com.github.catfriend1.syncthingandroid.debug android.permission.WRITE_SECURE_SETTINGS
+     *      adb shell pm grant com.fireworld.syncthing android.permission.WRITE_SECURE_SETTINGS
+     *      adb shell pm grant com.fireworld.syncthing.debug android.permission.WRITE_SECURE_SETTINGS
      */
     private static void disableDuraSpeed(Context context) {
         Log.d(TAG, "Disabling DuraSpeed");

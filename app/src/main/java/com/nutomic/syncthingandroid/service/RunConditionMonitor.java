@@ -43,13 +43,13 @@ public class RunConditionMonitor {
     private Boolean ENABLE_VERBOSE_LOG = false;
 
     public static final String ACTION_SYNC_TRIGGER_FIRED =
-        "com.github.catfriend1.syncthingandroid.service.RunConditionMonitor.ACTION_SYNC_TRIGGER_FIRED";
+        "com.fireworld.syncthing.service.RunConditionMonitor.ACTION_SYNC_TRIGGER_FIRED";
 
     public static final String ACTION_UPDATE_SHOULDRUN_DECISION =
-        "com.github.catfriend1.syncthingandroid.service.RunConditionMonitor.ACTION_UPDATE_SHOULDRUN_DECISION";
+        "com.fireworld.syncthing.service.RunConditionMonitor.ACTION_UPDATE_SHOULDRUN_DECISION";
 
     public static final String EXTRA_BEGIN_ACTIVE_TIME_WINDOW =
-        "com.github.catfriend1.syncthingandroid.service.RunConditionMonitor.BEGIN_ACTIVE_TIME_WINDOW";
+        "com.fireworld.syncthing.service.RunConditionMonitor.BEGIN_ACTIVE_TIME_WINDOW";
 
     private @Nullable Object mSyncStatusObserverHandle = null;
     private final SyncStatusObserver mSyncStatusObserver = new SyncStatusObserver() {
@@ -726,6 +726,7 @@ public class RunConditionMonitor {
     /**
      * Functions for run condition information retrieval.
      */
+    // @TargetApi(17)
     private boolean isCharging_API17() {
         Intent intent = mContext.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         int plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
@@ -734,6 +735,7 @@ public class RunConditionMonitor {
             plugged == BatteryManager.BATTERY_PLUGGED_WIRELESS;
     }
 
+    // @TargetApi(21)
     private boolean isPowerSaving() {
         PowerManager powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         if (powerManager == null) {

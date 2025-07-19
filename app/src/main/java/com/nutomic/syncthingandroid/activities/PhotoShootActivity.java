@@ -79,6 +79,8 @@ public class PhotoShootActivity extends ThemedAppCompatActivity {
             Log.v(TAG, "User completed intro and consented before. Warp to take a picture.");
             openCameraIntent();
             return;
+
+        // Make notification bar transparent (API level 21+)
         }
 
         // Show photo shoot intro UI to request required permissions.
