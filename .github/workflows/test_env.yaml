@@ -1,0 +1,22 @@
+name: Build debug App
+
+on:
+  #pull_request:
+  #push:
+  #  branches:
+  #    - main
+  #    - release
+  workflow_dispatch:
+jobs:
+  build:
+    name: Syncthing Build
+    runs-on: ubuntu-24.04
+    environment: 
+      name: AndroidSign
+    steps:
+      - name: set java home
+        run: |
+        	 echo "JAVA_HOME=$JAVA_HOME_21_X64" >> $GITHUB_ENV
+      - name: clean cache
+        run: |
+            java -version
