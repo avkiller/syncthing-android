@@ -20,7 +20,6 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
-
       - name: Ensure release branch
         run: |
           git config --system --add safe.directory '*'
@@ -35,19 +34,6 @@ jobs:
           set -eu
           VERSION=$(grep 'version-name = ' gradle/libs.versions.toml | cut -d '"' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-
-      - name: Get commit hash
-        if: false
-        id: get_commit_hash
-        run: |
-          set -eu
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            COMMIT_HASH_LONG="${{ github.event.pull_request.head.sha }}"
-          else
-            COMMIT_HASH_LONG="${{ github.sha }}"
-          fi
-          COMMIT_HASH_SHORT=$(echo "$COMMIT_HASH_LONG" | cut -c1-7)
-          echo "COMMIT_HASH=${COMMIT_HASH_SHORT}" >> $GITHUB_ENV
 
        - name: Get tag version
         run: |
