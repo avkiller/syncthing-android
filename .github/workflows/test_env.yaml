@@ -20,7 +20,8 @@ jobs:
             java -version
             echo $JAVA_HOME
             sudo update-alternatives --list java
-            sudo update-alternatives --set java $JAVA_HOME
+            sudo update-alternatives --set java /usr/lib/jvm/temurin-21-jdk-amd64/bin/java
+
       - name: clean cache
         run: |
             java -version
