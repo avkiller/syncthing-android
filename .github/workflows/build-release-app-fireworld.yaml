@@ -40,6 +40,8 @@ jobs:
       - name: Get tag version
         run: |
           # 如果是手动触发 (workflow_dispatch)
+          set -eu
+          git config --system --add safe.directory '*'
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
             # 获取所有 Tag（确保包含远程 Tag）
             git fetch --tags
