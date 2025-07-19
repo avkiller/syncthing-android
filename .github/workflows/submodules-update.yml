@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - ".github/**"
+      - "docs/**"
+      - "README.md"
+      - "res/**"
+      - "docker/**"
+      - "scripts/**"
   schedule:
     - cron: '4 0 * * *'  # 每天UTC时间0:00执行
   workflow_dispatch:
