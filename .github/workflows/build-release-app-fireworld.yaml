@@ -36,7 +36,7 @@ jobs:
           VERSION=$(grep 'version-name = ' gradle/libs.versions.toml | cut -d '"' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-       - name: Get tag version
+      - name: Get tag version
         run: |
           # 如果是手动触发 (workflow_dispatch)
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
