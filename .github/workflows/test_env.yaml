@@ -18,7 +18,9 @@ jobs:
         run: |
             echo "JAVA_HOME=$JAVA_HOME_21_X64" >> $GITHUB_ENV
             java -version
+            echo $JAVA_HOME
             sudo update-alternatives --list java
+            sudo update-alternatives --set java $JAVA_HOME
       - name: clean cache
         run: |
             java -version
