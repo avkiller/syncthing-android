@@ -78,8 +78,8 @@ jobs:
         
       - name: Build with Gradle
         run: |
-          set -eu
-          git config --system --add safe.directory '*'
+          # set -eu
+          # git config --system --add safe.directory '*'
           java -version
           # ./gradlew buildNative
           # ./gradlew lint assembleRelease
