@@ -1,4 +1,4 @@
-name: Build debug App
+name: Build env test
 
 on:
   #pull_request:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: set java home
         run: |
-        	 echo "JAVA_HOME=$JAVA_HOME_21_X64" >> $GITHUB_ENV
+            echo "JAVA_HOME=$JAVA_HOME_21_X64" >> $GITHUB_ENV
       - name: clean cache
         run: |
             java -version
