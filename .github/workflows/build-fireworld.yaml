@@ -31,6 +31,7 @@ jobs:
           set -eu
           VERSION=$(grep 'version-name = ' gradle/libs.versions.toml | cut -d '"' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "JAVA_HOME=$JAVA_HOME_21_X64" >> $GITHUB_ENV
 
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
@@ -86,6 +87,8 @@ jobs:
           ./gradlew --no-daemon buildNative lintRelease assembleRelease
           # ./gradlew lint assembleRelease --debug --info --scan
           mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/syncthing-${{ env.VERSION }}.apk
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Setup sign tool version variable
         shell: bash
@@ -93,6 +96,8 @@ jobs:
           BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
           echo "ANDROID_SIGN_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
           echo Last build tool version is: $BUILD_TOOL_VERSION
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - uses: r0adkll/sign-android-release@v1
         name: Sign app APK
