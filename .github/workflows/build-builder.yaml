@@ -1,4 +1,4 @@
-name: Builder Image
+name: Builder Image for avkiller
 
 on:
   pull_request:
