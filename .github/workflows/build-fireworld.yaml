@@ -32,6 +32,9 @@ jobs:
           VERSION=$(grep 'version-name = ' gradle/libs.versions.toml | cut -d '"' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "JAVA_HOME=$JAVA_HOME_21_X64" >> $GITHUB_ENV
+          java -version
+          sudo update-alternatives --set java /usr/lib/jvm/temurin-21-jdk-amd64/bin/java
+
 
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
