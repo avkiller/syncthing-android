@@ -70,7 +70,7 @@ jobs:
           set -eu
           echo '${{ secrets.ANDROID_SIGNING_KEY }}' | base64 -d > "$SYNCTHING_RELEASE_STORE_FILE"
           java -version
-          ./gradlew --no-daemon buildNative lintRelease assembleRelease
+          ./gradlew --no-daemon buildNative lintRelease assembleRelease bundlegplay
           rm "$SYNCTHING_RELEASE_STORE_FILE"
 
       - name: prepare-artifacts
