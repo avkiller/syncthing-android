@@ -17,7 +17,7 @@ env:
 jobs:
   build:
     name: Syncthing Build
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     environment: 
       name: AndroidSign
     steps:
@@ -42,6 +42,7 @@ jobs:
           ndk-version: ${{ env.NDK_VERSION }}
           add-to-path: true
       - name: Install dependencies
+        if: false
         run: |
           sudo apt-get update
           sudo apt-get install -y binutils-arm-linux-gnueabi binutils-aarch64-linux-gnu
@@ -50,7 +51,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
         
       - name: clean cache
-        if: false
+        # if: false
         run: |
             ./gradlew cleanNative
             ./gradlew clean
