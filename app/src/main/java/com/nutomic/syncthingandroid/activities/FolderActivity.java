@@ -74,20 +74,20 @@ import static com.nutomic.syncthingandroid.service.RunConditionMonitor.EXTRA_BEG
  */
 public class FolderActivity extends SyncthingActivity {
     public static final String EXTRA_DEVICE_ID =
-            "com.fireworld.syncthing.activities.FolderActivity.DEVICE_ID";
+            ".activities.FolderActivity.DEVICE_ID";
 
     public static final String EXTRA_FOLDER_ID =
-            "com.fireworld.syncthing.activities.FolderActivity.FOLDER_ID";
+            ".activities.FolderActivity.FOLDER_ID";
     public static final String EXTRA_FOLDER_LABEL =
-            "com.fireworld.syncthing.activities.FolderActivity.FOLDER_LABEL";
+            ".activities.FolderActivity.FOLDER_LABEL";
     public static final String EXTRA_IS_CREATE =
-            "com.fireworld.syncthing.activities.FolderActivity.IS_CREATE";
+            ".activities.FolderActivity.IS_CREATE";
     public static final String EXTRA_NOTIFICATION_ID =
-            "com.fireworld.syncthing.activities.FolderActivity.NOTIFICATION_ID";
+            ".activities.FolderActivity.NOTIFICATION_ID";
     public static final String EXTRA_RECEIVE_ENCRYPTED =
-            "com.fireworld.syncthing.activities.FolderActivity.RECEIVE_ENCRYPTED";
+            ".activities.FolderActivity.RECEIVE_ENCRYPTED";
     public static final String EXTRA_REMOTE_ENCRYPTED =
-            "com.fireworld.syncthing.activities.FolderActivity.REMOTE_ENCRYPTED";
+            ".activities.FolderActivity.REMOTE_ENCRYPTED";
 
     private static final String TAG = "FolderActivity";
 

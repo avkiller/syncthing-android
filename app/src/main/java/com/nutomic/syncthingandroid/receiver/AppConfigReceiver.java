@@ -25,31 +25,28 @@ public class AppConfigReceiver extends BroadcastReceiver {
     private static final String TAG = "AppConfigReceiver";
 
     /**
-     * Start the Syncthing-Service
-     * adb shell am broadcast -a com.fireworld.syncthing.action.FOLLOW -p com.fireworld.syncthing.debug
+     * Let Syncthing-Service follow run conditions
      */
-    private static final String ACTION_FOLLOW = "com.fireworld.syncthing.action.FOLLOW";
+    private static final String ACTION_FOLLOW = ".action.FOLLOW";
 
     /**
      * Start the Syncthing-Service
-     * adb shell am broadcast -a com.fireworld.syncthing.action.START -p com.fireworld.syncthing.debug
      */
-    private static final String ACTION_START = "com.fireworld.syncthing.action.START";
+    private static final String ACTION_START = ".action.START";
 
     /**
      * Stop the Syncthing-Service
-     * adb shell am broadcast -a com.fireworld.syncthing.action.STOP -p com.fireworld.syncthing.debug
      * If startServiceOnBoot is enabled the service must not be stopped. Instead a
      * notification is presented to the user.
      */
-    private static final String ACTION_STOP  = "com.fireworld.syncthing.action.STOP";
+    private static final String ACTION_STOP  = ".action.STOP";
 
     @Inject NotificationHandler mNotificationHandler;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         ((SyncthingApp) context.getApplicationContext()).component().inject(this);
-        String intentAction = intent.getAction();
+        String intentAction = intent.getAction().replaceFirst(context.getPackageName(), "");
         if (!getPrefBroadcastServiceControl(context)) {
             switch (intentAction) {
                 case ACTION_FOLLOW:
@@ -66,15 +63,19 @@ public class AppConfigReceiver extends BroadcastReceiver {
             case ACTION_FOLLOW:
                 Log.d(TAG, "followRunConditions by intent");
                 setPrefBtnStateForceStartStopAndNotify(context, Constants.BTNSTATE_NO_FORCE_START_STOP);
+                BootReceiver.startServiceCompat(context);
                 break;
             case ACTION_START:
                 Log.d(TAG, "forceStart by intent");
                 setPrefBtnStateForceStartStopAndNotify(context, Constants.BTNSTATE_FORCE_START);
+                BootReceiver.startServiceCompat(context);
                 break;
             case ACTION_STOP:
                 Log.d(TAG, "forceStop by intent");
                 setPrefBtnStateForceStartStopAndNotify(context, Constants.BTNSTATE_FORCE_STOP);
                 break;
+            default:
+                Log.w(TAG, "invalid intent action: " + intentAction);
         }
     }
 

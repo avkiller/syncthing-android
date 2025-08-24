@@ -3,21 +3,18 @@ plugins {
     alias(libs.plugins.aboutLibraries)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
 }
 
 dependencies {
-    implementation(libs.aboutlibraries.compose.m2)
+    implementation(libs.aboutlibraries.compose.m3)
     implementation(libs.aboutlibraries.core)
     implementation(libs.activity.compose)
     implementation(libs.activity.ktx)
     implementation(libs.android.material)
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.material)
-    implementation(libs.compose.material.icons.core)
+    implementation(libs.compose.material3)
     implementation(libs.compose.material.icons.extended)
     implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling.preview)
     implementation(libs.constraintlayout)
     implementation(libs.core.ktx)
     implementation(libs.dagger)
@@ -35,7 +32,7 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.zxing.android.embedded) { isTransitive = false }
     implementation(libs.zxing.core)
-    kapt(libs.dagger.compiler)
+    ksp(libs.dagger.compiler)
 }
 
 android {
@@ -47,7 +44,6 @@ android {
 
     buildFeatures {
         compose = true
-        dataBinding = true
     }
 
     defaultConfig {
@@ -120,6 +116,12 @@ android {
         abortOnError = true
         targetSdk = libs.versions.target.sdk.get().toInt()
     }
+
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
 }
 
 /**

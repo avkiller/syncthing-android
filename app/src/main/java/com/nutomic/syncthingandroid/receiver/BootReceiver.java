@@ -62,7 +62,7 @@ public class BootReceiver extends BroadcastReceiver {
      *
      * https://stackoverflow.com/a/44505719/1837158
      */
-    private static void startServiceCompat(Context context) {
+    public static void startServiceCompat(Context context) {
         Intent intent = new Intent(context, SyncthingService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.startForegroundService(intent);
@@ -87,8 +87,7 @@ public class BootReceiver extends BroadcastReceiver {
      * Prerequisistes:
      * - android.permission.WRITE_SETTINGS
      * - android.permission.WRITE_SECURE_SETTINGS
-     *      adb shell pm grant com.fireworld.syncthing android.permission.WRITE_SECURE_SETTINGS
-     *      adb shell pm grant com.fireworld.syncthing.debug android.permission.WRITE_SECURE_SETTINGS
+     *      adb shell pm grant ${applicationId} android.permission.WRITE_SECURE_SETTINGS
      */
     private static void disableDuraSpeed(Context context) {
         Log.d(TAG, "Disabling DuraSpeed");
