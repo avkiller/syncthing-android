@@ -17,8 +17,8 @@ import java.util.List;
 
 public class PullOrderDialogActivity extends ThemedAppCompatActivity {
 
-    public static final String EXTRA_PULL_ORDER = "com.fireworld.syncthing.activities.PullOrderDialogActivity.PULL_ORDER";
-    public static final String EXTRA_RESULT_PULL_ORDER = "com.fireworld.syncthing.activities.PullOrderDialogActivity.EXTRA_RESULT_PULL_ORDER";
+    public static final String EXTRA_PULL_ORDER = ".activities.PullOrderDialogActivity.PULL_ORDER";
+    public static final String EXTRA_RESULT_PULL_ORDER = ".activities.PullOrderDialogActivity.EXTRA_RESULT_PULL_ORDER";
 
     private String selectedType;
 

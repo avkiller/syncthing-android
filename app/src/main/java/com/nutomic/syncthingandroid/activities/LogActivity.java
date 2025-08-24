@@ -269,12 +269,13 @@ public class LogActivity extends SyncthingActivity {
                             logline.contains("W/Looper") ||
                             logline.contains("/libEGL") ||
                             logline.contains("/libMiGL") ||
+                            logline.contains("E/libc") ||
                             logline.contains("W/libc") ||
-                            logline.contains("W/libsyncthingnat") ||
                             logline.contains("/MessageMonitor") ||
                             logline.contains("/MIUI") ||
                             logline.contains("/MiInputConsumer") ||
                             logline.contains("/Miui") ||
+                            logline.contains("MiuiBoosterUtils") ||
                             logline.contains("/NativeTurboSchedManager") ||
                             logline.contains("W/netstat") ||
                             logline.contains("/ngandroid.debu") ||

@@ -73,13 +73,13 @@ import static com.nutomic.syncthingandroid.util.Compression.METADATA;
 public class DeviceActivity extends SyncthingActivity {
 
     public static final String EXTRA_NOTIFICATION_ID =
-            "com.fireworld.syncthing.activities.DeviceActivity.NOTIFICATION_ID";
+            ".activities.DeviceActivity.NOTIFICATION_ID";
     public static final String EXTRA_DEVICE_ID =
-            "com.fireworld.syncthing.activities.DeviceActivity.DEVICE_ID";
+            ".activities.DeviceActivity.DEVICE_ID";
     public static final String EXTRA_DEVICE_NAME =
-            "com.fireworld.syncthing.activities.DeviceActivity.DEVICE_NAME";
+            ".activities.DeviceActivity.DEVICE_NAME";
     public static final String EXTRA_IS_CREATE =
-            "com.fireworld.syncthing.activities.DeviceActivity.IS_CREATE";
+            ".activities.DeviceActivity.IS_CREATE";
 
     private static final String TAG = "DeviceActivity";
     private static final String IS_SHOWING_DISCARD_DIALOG = "DISCARD_FOLDER_DIALOG_STATE";

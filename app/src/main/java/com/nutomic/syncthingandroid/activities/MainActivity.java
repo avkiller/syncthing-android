@@ -90,7 +90,7 @@ public class MainActivity extends SyncthingActivity
      * Intent action to exit app.
      */
     public static final String ACTION_EXIT =
-            "com.fireworld.syncthing.MainActivity.EXIT";
+            ".MainActivity.EXIT";
 
     /**
      * Time after first start when usage reporting dialog should be shown.
