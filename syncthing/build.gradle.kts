@@ -17,7 +17,7 @@ fun getGitOutput(execOps: ExecOperations, command: List<String>, workingDir: Fil
 }
 
 fun getSyncthingNativeVersion(execOps: ExecOperations): String {
-    val dir = File(rootDir, "syncthing/src/github.com/syncthing/syncthing")
+    val dir = File(rootDir, "syncthing/src/github.com/avkiller/syncthing")
     val describe = getGitOutput(execOps, listOf("git", "describe", "--always"), dir)
     val regex = Regex("""v?(\d+)\.(\d+)\.(\d+)(?:-.+)?""")
     val match = regex.find(describe)
@@ -27,7 +27,7 @@ fun getSyncthingNativeVersion(execOps: ExecOperations): String {
 }
 
 fun getSourceDateEpoch(execOps: ExecOperations): String {
-    val dir = File(rootDir, "syncthing/src/github.com/syncthing/syncthing")
+    val dir = File(rootDir, "syncthing/src/github.com/avkiller/syncthing")
     return getGitOutput(execOps, listOf("git", "log", "-1", "--format=%ct"), dir)
 }
 
@@ -63,7 +63,7 @@ tasks.register("buildNative") {
         val env = mapOf(
             "NDK_VERSION" to libs.versions.ndk.version.get(),
             "SOURCE_DATE_EPOCH" to getSourceDateEpoch(execOps),
-            "BUILD_HOST" to "Catfriend1-syncthing-android",
+            "BUILD_HOST" to "avkiller-syncthing-android",
             "BUILD_USER" to "reproducible-build",
             "STTRACE" to ""
         )
