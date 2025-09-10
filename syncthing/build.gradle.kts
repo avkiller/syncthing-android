@@ -18,7 +18,7 @@ fun getGitOutput(execOps: ExecOperations, command: List<String>, workingDir: Fil
 
 fun getSyncthingNativeVersion(execOps: ExecOperations): String {
     val dir = File(rootDir, "syncthing/src/github.com/avkiller/syncthing")
-    val describe = getGitOutput(execOps, listOf("git", "describe", "--always"), dir)
+    val describe = getGitOutput(execOps, listOf("git", "describe", "--tags"), dir)
     val regex = Regex("""v?(\d+)\.(\d+)\.(\d+)(?:-.+)?""")
     val match = regex.find(describe)
     return match?.let {
