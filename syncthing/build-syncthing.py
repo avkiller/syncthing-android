@@ -108,7 +108,7 @@ def get_expected_go_version():
         'syncthing',
         'src',
         'github.com',
-        'syncthing',
+        'avkiller',
         'syncthing',
         '.github',
         'workflows',
