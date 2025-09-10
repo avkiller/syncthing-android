@@ -333,7 +333,7 @@
                 android:defaultValue="backups/syncthing/config.zip"
                 android:inputType="textNoSuggestions" />
 
-            <EditTextPreference
+            <com.nutomic.syncthingandroid.views.PasswordPreference
                 android:key="backup_password"
                 android:title="@string/backup_password_title"
                 android:summary="@null"
@@ -486,14 +486,6 @@
                 android:data="@string/syncthing_forum_url" />
         </Preference>
         <!--
-        <Preference
-            android:title="@string/pizza_url_title"
-            android:summary="@string/pizza_url_summary">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/pizza_url" />
-        </Preference>
-
         <Preference
             android:title="@string/privacy_title"
             android:summary="@string/privacy_summary">

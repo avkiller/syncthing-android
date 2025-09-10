@@ -1,23 +1,41 @@
-FROM eclipse-temurin:21-jdk-jammy
+FROM debian:stable-slim
 
-ENV GO_VERSION=1.25.0
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Can be found scrolling down on this page:
 # https://developer.android.com/studio/index.html#command-tools
 ARG ANDROID_SDK_FILENAME=commandlinetools-linux-11076708_latest.zip
 WORKDIR /opt
 
-# The '--reinstall' combined with 'build-essentials' is necessary for cgo
-# compilation of go std libs to work. A terrible, arcane hack to solve arkane
-# cgo issues - almost fitting.
-RUN apt-get update && apt-get install --reinstall --no-install-recommends -y build-essential gcc unzip git gnupg python3
+RUN apt-get update && \
+    apt-get install -y -q --no-install-recommends \
+      autogen \
+      automake \
+      autopoint \
+      bash \
+      bzip2 \
+      ca-certificates \
+      curl \
+      g++ \
+      git \
+      gnupg \
+      golang-go \
+      libc-dev \
+      make \
+      gettext \
+      libtool \
+      openjdk-21-jdk-headless \
+      pkg-config \
+      python3 \
+      rename \
+      shtool \
+      unzip \
+      wget && \
+    apt-get clean
 
-# Install Go
-RUN wget -nv https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
-    tar -zxf go${GO_VERSION}.linux-amd64.tar.gz && \
-    rm go${GO_VERSION}.linux-amd64.tar.gz
-ENV GOROOT=/opt/go
-ENV PATH=/opt/go/bin:${PATH}
+# Add go to PATH.
+ENV GOROOT=/usr/lib/go
+ENV PATH=$GOROOT/bin:$PATH
 
 # Install Android SDK manager
 RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
@@ -31,19 +49,6 @@ ARG SDKMANAGER="${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROI
 # Accept the SDK license, as we can't install packages otherwise
 RUN yes | $SDKMANAGER --licenses > /dev/null
 
-# NDK version
-ENV NDK_VERSION=28.0.13004108
-ENV TARGET_SDK_VERSION=36
-
-# Install other android packages, including NDK
-RUN $SDKMANAGER tools platform-tools "build-tools;${TARGET_SDK_VERSION}.0.0" "platforms;android-${TARGET_SDK_VERSION}" "extras;android;m2repository" "ndk;${NDK_VERSION}"
-
-# Accept licenses of newly installed packages
-RUN yes | $SDKMANAGER --licenses
-
-# Enable prebuild mode
-ENV SYNCTHING_ANDROID_PREBUILT=1
-
 # Set location of go cache
 ENV GOCACHE=/opt/gocache
 
@@ -56,6 +61,22 @@ ADD . /opt/syncthing-android
 RUN find /opt/syncthing-android -name "*.sh" -exec sed -i 's/\r$//' {} \;
 RUN find /opt/syncthing-android -name "gradlew" -exec sed -i 's/\r$//' {} \;
 
-RUN /opt/syncthing-android/docker/prebuild.sh
+# Prebuild go and SyncthingNative
+RUN cd /opt/syncthing-android && \
+    ./gradlew --no-daemon buildNative && \
+    ./gradlew --no-daemon lintDebug
+
+# Clean up build sources
+RUN rm -rf /opt/syncthing-android
+
+# Remove bootstrap go
+RUN apt-get purge -y golang-go && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Use built go
+ENV GOROOT=/opt/syncthing-android-prereq/go
+ENV PATH=$GOROOT/bin:$PATH
 
 WORKDIR /mnt

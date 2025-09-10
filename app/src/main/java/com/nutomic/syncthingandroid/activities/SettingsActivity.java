@@ -53,6 +53,7 @@ import com.nutomic.syncthingandroid.service.SyncthingServiceBinder;
 import com.nutomic.syncthingandroid.util.ConfigRouter;
 import com.nutomic.syncthingandroid.util.FileUtils;
 import com.nutomic.syncthingandroid.util.Util;
+import com.nutomic.syncthingandroid.views.PasswordPreference;
 import com.nutomic.syncthingandroid.views.WifiSsidPreference;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -204,7 +205,7 @@ public class SettingsActivity extends SyncthingActivity {
 
         /* Import and Export */
         private EditTextPreference mBackupRelPathToZip;
-        private EditTextPreference mBackupPassword;
+        private PasswordPreference mBackupPassword;
 
         /* Experimental options */
         private CheckBoxPreference mUseWakelock;
@@ -357,8 +358,8 @@ public class SettingsActivity extends SyncthingActivity {
             mBackupRelPathToZip.setSummary(mBackupRelPathToZip.getText());
             mBackupRelPathToZip.setOnPreferenceChangeListener(this);
 
-            mBackupPassword = (EditTextPreference) findPreference(Constants.PREF_BACKUP_PASSWORD);;
-            onPreferenceChange(mBackupPassword, mBackupPassword.getText());
+            mBackupPassword = (PasswordPreference) findPreference(Constants.PREF_BACKUP_PASSWORD);
+            mBackupPassword.setText(mBackupPassword.getText());
             mBackupPassword.setOnPreferenceChangeListener(this);
 
             /* Troubleshooting */
@@ -767,13 +768,6 @@ public class SettingsActivity extends SyncthingActivity {
             switch (preference.getKey()) {
                 case Constants.PREF_BACKUP_REL_PATH_TO_ZIP:
                     preference.setSummary((String) o);
-                    break;
-                case Constants.PREF_BACKUP_PASSWORD:
-                    if (((String) o).isEmpty()) {
-                        preference.setSummary(getString(R.string.backup_password_not_set));
-                    } else {
-                        preference.setSummary(getString(R.string.backup_password_set, (String) o));
-                    }
                     break;
                 case Constants.PREF_DEBUG_FACILITIES_ENABLED:
                     mPendingConfig = true;
