@@ -53,6 +53,7 @@ public class Constants {
     public static final String PREF_START_SERVICE_ON_BOOT       = "always_run_in_background";
     public static final String PREF_BROADCAST_SERVICE_CONTROL   = "broadcast_service_control";
     public static final String PREF_USE_ROOT                    = "use_root";
+    public static final String PREF_ALLOW_OVERWRITE_FILES       = "allow_overwrite_files";
 
     // Preferences - Syncthing Options
     public static final String PREF_WEBUI_USERNAME              = "webui_username";
@@ -180,7 +181,7 @@ public class Constants {
      * On Android 8.1, ACCESS_COARSE_LOCATION is required to access WiFi SSID.
      * This is the request code used when requesting the permission.
      */
-    public static final int PERM_REQ_ACCESS_LOCATION = 999; // for issue #999
+    public static final int PERM_REQ_ACCESS_LOCATION = 999;
 
     /**
      * Interval in ms at which RestAPI is polled.
@@ -337,7 +338,6 @@ public class Constants {
     /**
      * Detect kernels with a bug causing kernel oops when
      * Syncthing v1.3.0+ attempts to enable the NAT feature.
-     * See: https://github.com/Catfriend1/syncthing-android/issues/505
      */
     public static Boolean osHasKernelBugIssue505() {
         String kernelVersion = java.lang.System.getProperty("os.version");
@@ -346,7 +346,7 @@ public class Constants {
         }
         /**
          * Affected kernels:
-         * Samsung Note N7000 - LOS 16 - 3.0.101-gf32669ee5be #1 Tue Apr 7 20:05:58 +08 2020
+         * Samsung Note N7000 - LOS 16 - Android 9 - 3.0.101-gf32669ee5be #1 Tue Apr 7 20:05:58 +08 2020
          */
         return kernelVersion.startsWith("3.0.") ||
                 kernelVersion.startsWith("3.4.");

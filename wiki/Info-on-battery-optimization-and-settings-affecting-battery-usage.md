@@ -10,21 +10,17 @@ Here is how you can reduce battery usage even further by optimizing Syncthing's 
 
 Short summary:
 * Optimize for better battery life
-* * Pros:
-* * * You'll totally love Syncthing's efficiency.
-* * * Good for advanced and expert users.
-* * Cons:
-* * * You have to do more "caretaking" on how you setup communication between devices yourself.
-* * * You might come to the point where you like to use an always-on server as a partner for your phone.
+  * Pros:
+    * You'll totally love Syncthing's efficiency.
+    * Good for advanced and expert users.
+  * Cons:
+    * You have to do more "caretaking" on how you setup communication between devices yourself.
+    * You might come to the point where you like to use an always-on server as a partner for your phone.
 
 * Optimize for faster sync
-* * Pros:
-* * * Syncing just works out of the box.
-* * * Less need of "caretaking".
-* * Cons:
-* * * Good for beginner users.
-* * * Because of discovery mechnisms active by default, you'll have open connections all the time even if no partner device is available to sync data with. Those connections, especially WAN connections, keep your modem active and therefore permanently consume battery.
-
-Useful reading:
-* Issue #419 "[Info on battery optimization and settings affecting battery usage](https://github.com/Catfriend1/syncthing-android/issues/419)"
-* Issue #327 "[Syncthing becomes disconnected while android is sleeping](https://github.com/Catfriend1/syncthing-android/issues/327#issuecomment-465122806)"
+  * Pros:
+    * Syncing just works out of the box.
+    * Less need of "caretaking".
+  * Cons:
+    * Good for beginner users.
+    * Because of discovery mechnisms active by default, you'll have open connections all the time even if no partner device is available to sync data with. Those connections, especially WAN connections, keep your modem active and therefore permanently consume battery.

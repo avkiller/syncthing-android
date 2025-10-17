@@ -14,35 +14,23 @@ A wrapper of [Syncthing](https://github.com/syncthing/syncthing) for Android. He
 
 ## I am no longer publishing this on Google Play
 
-See [detailed info](https://github.com/Catfriend1/syncthing-android/blob/main/wiki/Switch-between-releases_Verify-APK-is-genuine.md) about release variants and which is recommended to fit your needs.
+See [detailed info](wiki/Switch-between-releases_Verify-APK-is-genuine.md) about release variants and which is recommended to fit your needs.
 
 "nel0x" has announced to continue publishing on the play store. I welcome his help and the work I think he'll put into [his mission](https://github.com/nel0x/syncthing-android-gplay). It's up to you, reading this, to decide if to trust and/or support him or go with the F-Droid release channel of this app instead. You don't know me and I don't know him... we are all volunteers in the spirit of open source.
 
-## Switching from the (now deprecated) official version
+## Switching from the deprecated official version
 
-Switching is easier than you may think!
-
-- On Syncthing on the official app, go into the settings and create a backup.
-- Confirm you can see that backup in your files.
-- Now stop the official app entirely using the system app settings for Syncthing (force stop the app basically - we need to ensure it's not running).
-- Install Syncthing-Fork [v1.29.7.1](https://github.com/Catfriend1/syncthing-android/releases/tag/v1.29.7.1)
-- Now start Syncthing-Fork.
-- In the Syncthing-Fork settings, restore the backup you created earlier.
-- Like magic, everything should be as it was in Syncthing official.
-- Confirm everything looks good.
-- Uninstall the official Syncthing app.
-- Delete the syncthing configuration backup from `backups/syncthing`.
-- Upgrade to the [latest Syncthing-Fork version](https://github.com/Catfriend1/syncthing-android/releases/latest)
+Switching is easier than you may think! See our [wiki article](wiki/migration/Switching-from-the-deprecated-official-version.md) for detailed instructions.
 
 ## Wiki and Useful Articles
 
-Our knowledge base is published [here](https://github.com/Catfriend1/syncthing-android/tree/main/wiki#readme).
+Our knowledge base is published [here](wiki#readme).
 
-Our [release history and changelog](https://github.com/Catfriend1/syncthing-android/blob/main/wiki/CHANGELOG.md) can be found on the wiki.
+Our [release history and changelog](wiki/CHANGELOG.md) can be found on the wiki.
 
 ## Building and Development Notes
 
-See [detailed info](https://github.com/Catfriend1/syncthing-android/blob/main/wiki/Building-and-Development.md).
+See [detailed info](wiki/developers/Building-and-Development.md).
 
 ## Acknowledgments
 
@@ -55,7 +43,7 @@ Special thanks to the former maintainers:
 
 ## Privacy Policy
 
-See our document on privacy: [privacy-policy.md](https://github.com/Catfriend1/syncthing-android/blob/main/privacy-policy.md).
+See our document on privacy: [privacy-policy.md](privacy-policy.md).
 
 ## License
 
